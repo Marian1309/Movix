@@ -127,7 +127,8 @@
     "no-case-declarations": "off",
     "@typescript-eslint/no-var-requires": "off",
     "no-unused-vars": "off",
-    "guard-for-in": "off"
+    "guard-for-in": "off",
+    "@typescript-eslint/no-empty-interface": "off"
   },
   "globals": {
     "process": true,
