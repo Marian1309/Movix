@@ -9,7 +9,7 @@
   },
   "scripts": {
     "prepare": "prisma generate",
-    "commit": "pnpm lint && pnpm format && git add . && gitmoji -c && git push -u origin master",
+    "commit": "pnpm lint && pnpm format && git add . && gitmoji -c && git push -u origin master && clear",
     "check": "ncu",
     "delete": "rimraf node_modules && rimraf .next",
     "dev": "next dev",
