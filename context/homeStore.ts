@@ -22,6 +22,7 @@ interface Home {
     total_pages?: number
     total_results?: number
     backdrop?: string
+    poster?: string
   }
   // genres: {}
   getApiConfiguration: (payload: any) => void

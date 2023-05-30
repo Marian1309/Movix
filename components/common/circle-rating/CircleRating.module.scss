@@ -1,0 +1,11 @@
+.circleRating {
+  @apply rounded-full p-[3px] left-[0px] bottom-[0px] absolute w-[70px] bg-white;
+
+  .CircularProgressbar-text {
+    @apply text-[34px] font-bold fill-[var(--black)];
+  }
+
+  .CircularProgressbar-trail {
+    stroke: transparent;
+  }
+}

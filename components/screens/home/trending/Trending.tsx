@@ -3,7 +3,7 @@ import { useState } from 'react'
 
 import { useTMDB } from '@hooks'
 
-import { ContextWrapper, SwitchTabs } from '@components/common'
+import { Carousel, ContextWrapper, SwitchTabs } from '@components/common'
 
 import styles from './Trending.module.scss'
 
@@ -22,6 +22,8 @@ const Trending: FC = () => {
         <span className={styles.carouselTitle}>Trending</span>
         <SwitchTabs data={['Day', 'Week']} onTabChange={onTabChange} />
       </ContextWrapper>
+
+      <Carousel data={data?.results} isLoading={isLoading} />
     </div>
   )
 }
