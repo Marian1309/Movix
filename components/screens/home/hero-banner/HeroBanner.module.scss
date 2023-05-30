@@ -1,102 +1,53 @@
 @import '@styles/mixins.scss';
 
 .heroBanner {
-  width: 100%;
-  height: 450px;
-  background-color: var(--black);
-  display: flex;
-  align-items: center;
-  position: relative;
-  @include md {
-    height: 700px;
-  }
+  @apply w-screen bg-[var(--black)] flex items-center relative xl:h-[700px] md:h-[450px] sm:h-[300px];
+
   .backdrop-img {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0.5;
-    overflow: hidden;
+    @apply w-full h-full absolute top-0 left-0 opacity-75 overflow-hidden;
+
     .lazy-load-image-background {
-      width: 100%;
-      height: 100%;
+      @apply w-full h-full;
+
       img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
+        @apply w-full h-full bg-cover bg-center;
       }
     }
   }
+
   .opacity-layer {
-    width: 100%;
-    height: 250px;
+    @apply w-full h-[250px] absolute bottom-0 left-0;
     background: linear-gradient(180deg, rgba(4, 21, 45, 0) 0%, #04152d 79.17%);
-    position: absolute;
-    bottom: 0;
-    left: 0;
   }
+
   .heroBannerContent {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: white;
-    text-align: center;
-    position: relative;
-    max-width: 800px;
-    margin: 0 auto;
+    @apply flex flex-col items-center text-white text-center relative max-w-[800px] my-0 mx-auto;
+
     .title {
-      font-size: 50px;
-      font-weight: 700;
-      margin-bottom: 10px;
-      @include md {
-        margin-bottom: 0;
-        font-size: 90px;
-      }
+      @apply text-[50px] font-bold mb-[10px] md:mb-0 md:text-[90px];
     }
     .subTitle {
-      font-size: 18px;
-      font-weight: 500;
-      margin-bottom: 40px;
-      @include md {
-        font-size: 24px;
-      }
+      @apply text-[18px] font-normal mb-[40px] md:text-[24px];
     }
     .searchInput {
-      display: flex;
-      align-items: center;
-      width: 100%;
+      @apply flex items-center w-full text-black;
+
       input {
         width: calc(100% - 100px);
-        height: 50px;
-        background-color: white;
-        outline: 0;
-        border: 0;
-        border-radius: 30px 0 0 30px;
-        padding: 0 15px;
-        font-size: 14px;
+        @apply h-[50px] bg-white outline-0 border-0 py-0 px-[15px] text-[14px];
+
         @include md {
           width: calc(100% - 150px);
-          height: 60px;
-          font-size: 20px;
-          padding: 0 30px;
+          @apply h-[60px] text-[20px] py-0 px-[30px];
         }
       }
       button {
-        width: 100px;
-        height: 50px;
-        background: var(--gradient);
-        color: white;
-        outline: 0;
-        border: 0;
+        @apply w-[100px] h-[50px] text-white outline-0 border-0 text-[16px] cursor-pointer;
         border-radius: 0 30px 30px 0;
-        font-size: 16px;
-        cursor: pointer;
+        background: var(--gradient);
+
         @include md {
-          width: 150px;
-          height: 60px;
-          font-size: 18px;
+          @apply w-[150px] h-[60px] text-[18px];
         }
       }
     }

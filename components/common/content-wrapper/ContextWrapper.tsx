@@ -1,8 +1,17 @@
 import type { FC, ReactNode } from 'react'
 
-const ContextWrapper: FC<{ children: ReactNode }> = ({ children }) => {
+import clsx from 'clsx'
+
+interface ContextWrapperProps {
+  children: ReactNode
+  className?: string
+}
+
+const ContextWrapper: FC<ContextWrapperProps> = ({ children, className }) => {
   return (
-    <div className='w-full max-w-[1200px] my-0 mx-auto py-0 px-[20px]'>{children}</div>
+    <div className={clsx('w-full max-w-[1200px] my-0 mx-auto py-0 px-[20px]', className)}>
+      {children}
+    </div>
   )
 }
 

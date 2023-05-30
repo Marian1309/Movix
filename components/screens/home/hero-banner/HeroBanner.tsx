@@ -45,6 +45,8 @@ const HeroBanner: FC<HeroBannerProps> = ({}) => {
         </div>
       )}
 
+      <div className={styles['opacity-layer']} />
+
       <ContextWrapper>
         <div className={styles.heroBannerContent}>
           <span className={styles.title}>Welcome.</span>
@@ -59,6 +61,7 @@ const HeroBanner: FC<HeroBannerProps> = ({}) => {
               placeholder='Search for a movie or tv show ...'
               type='text'
             />
+
             <button>Search</button>
           </div>
         </div>

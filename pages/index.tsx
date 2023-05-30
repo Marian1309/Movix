@@ -2,11 +2,11 @@ import { useEffect } from 'react'
 
 import type { NextPage } from 'next'
 
-import { HeroBanner } from '@components/screens/home'
-
 import useHomeStore from '@context/homeStore'
 
 import { fetchFromTMDB } from '@utils/helpers'
+
+import { HeroBanner } from '@components/screens/home'
 
 const Home: NextPage = () => {
   const { url, getApiConfiguration } = useHomeStore()
@@ -26,6 +26,7 @@ const Home: NextPage = () => {
   return (
     <>
       <HeroBanner />
+      <div className='h-screen' />
     </>
   )
 }

@@ -1,3 +1,4 @@
 {
-  "favicon": "/favicon.ico"
+  "favicon": "/icons/movix-logo.png",
+  "logo": "/icons/movix-logo.svg"
 }

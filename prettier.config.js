@@ -22,8 +22,8 @@ const baseRules = {
     '^@context',
     '^@utils',
     '^@hooks',
+    '^@components',
     '^@icons',
-    '^./components',
     '^@styles',
     '^../(.*)$',
     '^./(.*)$'
