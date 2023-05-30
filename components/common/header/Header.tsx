@@ -1,4 +1,4 @@
-import type { FC, KeyboardEvent} from 'react';
+import type { FC, KeyboardEvent } from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 

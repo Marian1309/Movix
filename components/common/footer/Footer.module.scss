@@ -1,0 +1,34 @@
+@import '@styles/mixins.scss';
+
+.footer {
+  @apply bg-[var(--black3)] py-[50px] px-0 text-white relative text-center;
+
+  .contentWrapper {
+    @apply flex items-center flex-col;
+  }
+
+  .menuItems {
+    @apply list-none flex items-center justify-center gap-[15px] mb-[20px] md:mb-[30px] md:gap-[30px];
+
+    .menuItem {
+      @apply cursor-pointer text-[12px] md:text-[16px] hover:text-[var(--pink)];
+      transition: all ease 0.3s;
+    }
+  }
+  .infoText {
+    @apply text-[12px] leading-5 opacity-50 inline-block mx-auto max-w-[800px] mb-[20px] md:text-[14px] md:mb-[30px];
+  }
+
+  .socialIcons {
+    @apply flex items-center justify-center gap-[10px];
+
+    .icon {
+      @apply w-[50px] h-[50px] bg-[var(--black)] flex items-center justify-center cursor-pointer hover:text-[var(--pink)];
+      transition: all ease 0.3s;
+      border-radius: 50%;
+      &:hover {
+        box-shadow: 0 0 0.625em var(--pink);
+      }
+    }
+  }
+}

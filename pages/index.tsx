@@ -26,7 +26,6 @@ const Home: NextPage = () => {
   return (
     <>
       <HeroBanner />
-      <div className='h-screen' />
     </>
   )
 }

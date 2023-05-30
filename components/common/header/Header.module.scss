@@ -1,142 +1,76 @@
 @import '@styles/mixins.scss';
 
 .header {
-  position: fixed;
-  transform: translateY(0);
-  width: 100%;
-  height: 60px;
-  z-index: 1;
-  display: flex;
-  align-items: center;
+  @apply fixed translate-y-0 w-full h-[60px] z-[1] flex items-center;
   transition: all ease 0.5s;
-  z-index: 2;
   &.top {
     background: rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(3.5px);
     -webkit-backdrop-filter: blur(3.5px);
   }
   &.show {
-    background-color: var(--black3);
+    @apply bg-[var(--black3)];
   }
   &.hide {
-    transform: translateY(-60px);
+    @apply translate-y-[-60px];
   }
 
   .contentWrapper {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    @apply flex items-center justify-between;
   }
+
   .logo {
-    cursor: pointer;
+    @apply cursor-pointer;
     img {
-      height: 50px;
+      @apply h-[50px];
     }
   }
   .menuItems {
-    list-style-type: none;
-    display: none;
-    align-items: center;
-    @include md {
-      display: flex;
-    }
+    @apply list-none hidden items-center md:flex;
+
     .menuItem {
-      height: 60px;
-      display: flex;
-      align-items: center;
-      margin: 0 15px;
-      color: white;
-      font-weight: 500;
-      position: relative;
+      @apply h-[60px] flex items-center my-0 mx-[15px] text-white font-normal relative;
+
       &.searchIcon {
-        margin-right: 0;
+        @apply mr-0 cursor-pointer hover:text-[var(--pink)];
       }
       svg {
-        font-size: 18px;
-      }
-      cursor: pointer;
-      &:hover {
-        color: var(--pink);
+        @apply text-[18px];
       }
     }
   }
 
   .mobileMenuItems {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    cursor: pointer;
-    @include md {
-      display: none;
-    }
+    @apply flex items-center gap-[20px] cursor-pointer md:hidden;
+
     svg {
-      font-size: 18px;
-      color: white;
+      @apply text-white text-[18px];
     }
   }
 
   &.mobileView {
     background: var(--black3);
     .menuItems {
-      display: flex;
-      position: absolute;
-      top: 60px;
-      left: 0;
-      background: var(--black3);
-      flex-direction: column;
-      width: 100%;
-      padding: 20px 0;
+      @apply flex absolute top-[60px] left-0 bg-[var(--black3)] flex-col w-full py-[20px] px-0;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
       animation: mobileMenu 0.3s ease forwards;
       .menuItem {
-        font-size: 20px;
-        width: 100%;
-        height: auto;
-        padding: 15px 20px;
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        &:last-child {
-          display: none;
-        }
+        @apply text-[20px] w-full h-auto py-[15px] px-[20px] m-0 flex flex-col items-start last:hidden;
       }
     }
   }
 
   .searchBar {
-    width: 100%;
-    height: 60px;
-    background-color: white;
-    position: absolute;
-    top: 60px;
+    @apply w-full h-[60px] bg-white absolute top-[60px];
     animation: mobileMenu 0.3s ease forwards;
     .searchInput {
-      display: flex;
-      align-items: center;
-      height: 40px;
-      margin-top: 10px;
-      width: 100%;
+      @apply flex items-center h-[40px] mt-[10px] w-full;
       svg {
-        font-size: 20px;
-        flex-shrink: 0;
-        margin-left: 10px;
-        cursor: pointer;
+        @apply text-[20px] flex-shrink-0 ml-[10px] cursor-pointer;
       }
       input {
-        width: 100%;
-        height: 50px;
-        background-color: white;
-        outline: 0;
-        border: 0;
+        @apply w-full h-[50px] bg-white outline-0 border-0 py-0 px-[15px] text-[14px] md:h-[60px] md:text-[20px] md:py-0 md:px-[30px];
         border-radius: 30px 0 0 30px;
-        padding: 0 15px;
-        font-size: 14px;
-        @include md {
-          height: 60px;
-          font-size: 20px;
-          padding: 0 30px;
-        }
       }
     }
   }
