@@ -11,8 +11,8 @@ interface SwitchTabsProps {
 }
 
 const SwitchTabs: FC<SwitchTabsProps> = ({ data, onTabChange }) => {
-  const [selectedTab, setSelectedTab] = useState(0)
-  const [left, setLeft] = useState(0)
+  const [selectedTab, setSelectedTab] = useState<number>(0)
+  const [left, setLeft] = useState<number>(0)
 
   const activeTab = (tab: string, i: number) => {
     setLeft(i * 100)

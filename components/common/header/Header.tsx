@@ -17,9 +17,7 @@ import { ContextWrapper } from '@components/common'
 
 import styles from './Header.module.scss'
 
-interface HeaderProps {}
-
-const Header: FC<HeaderProps> = ({}) => {
+const Header: FC = () => {
   const [show, setShow] = useState('top')
   const [lastScrollY, setLastScrollY] = useState(0)
   const [mobileMenu, setMobileMenu] = useState(false)

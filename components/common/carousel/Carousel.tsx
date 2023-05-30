@@ -1,10 +1,7 @@
 import type { FC } from 'react'
 
-import { useRouter } from 'next/router'
-
 import clsx from 'clsx'
 import dayjs from 'dayjs'
-import 'react-icons/bs'
 import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from 'react-icons/bs'
 
 import useHomeStore from '@context/homeStore'
@@ -21,19 +18,19 @@ interface CarouselProps {
 }
 
 const Carousel: FC<CarouselProps> = ({ data, isLoading }) => {
-  const router = useRouter()
-
   const { url } = useHomeStore()
 
-  const navigation = (dir: 'left' | 'right') => {}
+  const navigation = (dir: 'left' | 'right') => {
+    console.log(dir)
+  }
 
   const skItem = () => {
     return (
       <div className={styles.skeletonItem}>
-        <div className={clsx(styles.posterBlock, styles.skeleton)} />
+        <div className={clsx(styles.posterBlock)} />
         <div className={styles.textBlock}>
-          <div className={clsx(styles.title, styles.skeleton)} />
-          <div className={clsx(styles.date, styles.skeleton)} />
+          <div className={clsx(styles.title)} />
+          <div className={clsx(styles.date)} />
         </div>
       </div>
     )
@@ -46,7 +43,6 @@ const Carousel: FC<CarouselProps> = ({ data, isLoading }) => {
           className={clsx(styles.arrow, styles.carouselLeftNav)}
           onClick={() => navigation('left')}
         />
-
         <BsFillArrowRightCircleFill
           className={clsx(styles.arrow, styles.carouselRighttNav)}
           onClick={() => navigation('right')}

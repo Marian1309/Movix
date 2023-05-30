@@ -9,7 +9,7 @@ interface LazyLoadImageProps {
 }
 
 const LazyLoadImg: FC<LazyLoadImageProps> = ({ src, className }) => {
-  return <LazyLoadImage alt='' className={className || ''} effect='blur' src={src} />
+  return <LazyLoadImage alt='' className={className} effect='blur' src={src} />
 }
 
 export default LazyLoadImg

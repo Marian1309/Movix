@@ -1,5 +1,6 @@
 import type { FC } from 'react'
 
+import type { IconType } from 'react-icons'
 import { FaFacebookF, FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa'
 
 import { ContextWrapper } from '@components/common'
@@ -7,15 +8,28 @@ import { ContextWrapper } from '@components/common'
 import styles from './Footer.module.scss'
 
 const Footer: FC = () => {
+  const menuItems: { title: string }[] = [
+    { title: 'Terms Of Use' },
+    { title: 'Privacy-Policy' },
+    { title: 'About' },
+    { title: 'Blog' },
+    { title: 'FAQ' }
+  ]
+
+  const socialIcons: { icon: IconType }[] = [
+    { icon: FaFacebookF },
+    { icon: FaInstagram },
+    { icon: FaTwitter },
+    { icon: FaLinkedin }
+  ]
+
   return (
     <footer className={styles.footer}>
       <ContextWrapper>
         <ul className={styles.menuItems}>
-          <li className={styles.menuItem}>Terms Of Use</li>
-          <li className={styles.menuItem}>Privacy-Policy</li>
-          <li className={styles.menuItem}>About</li>
-          <li className={styles.menuItem}>Blog</li>
-          <li className={styles.menuItem}>FAQ</li>
+          {menuItems.map(({ title }, index) => (
+            <li key={index}>{title}</li>
+          ))}
         </ul>
 
         <div className={styles.infoText}>
@@ -25,19 +39,13 @@ const Footer: FC = () => {
           Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
           fugiat nulla pariatur.
         </div>
+
         <div className={styles.socialIcons}>
-          <span className={styles.icon}>
-            <FaFacebookF />
-          </span>
-          <span className={styles.icon}>
-            <FaInstagram />
-          </span>
-          <span className={styles.icon}>
-            <FaTwitter />
-          </span>
-          <span className={styles.icon}>
-            <FaLinkedin />
-          </span>
+          {socialIcons.map(({ icon: Icon }, index) => (
+            <span className={styles.icon} key={index}>
+              <Icon />
+            </span>
+          ))}
         </div>
       </ContextWrapper>
     </footer>

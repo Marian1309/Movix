@@ -9,25 +9,27 @@ import { fetchFromTMDB } from '@utils/helpers'
 import { HeroBanner, Trending } from '@components/screens/home'
 
 const Home: NextPage = () => {
-  const { url, getApiConfiguration } = useHomeStore()
+  const { getApiConfiguration } = useHomeStore()
+
+  const fetchConfiguration = async () => {
+    const response = await fetchFromTMDB('/configuration')
+    const url = {
+      backdrop: `${response.images.secure_base_url}original`,
+      poster: `${response.images.secure_base_url}original`,
+      profile: `${response.images.secure_base_url}original`
+    }
+
+    getApiConfiguration(url)
+  }
 
   useEffect(() => {
-    fetchFromTMDB('/configuration').then((res) => {
-      const url = {
-        backdrop: res.images.secure_base_url + 'original',
-        poster: res.images.secure_base_url + 'original',
-        profile: res.images.secure_base_url + 'original'
-      }
-
-      getApiConfiguration(url)
-    })
+    fetchConfiguration()
   }, [])
 
   return (
     <>
       <HeroBanner />
       <Trending />
-      <div className='h-screen' />
     </>
   )
 }

@@ -24,9 +24,9 @@ interface Home {
     backdrop?: string
     poster?: string
   }
-  // genres: {}
+  genres?: {}
   getApiConfiguration: (payload: any) => void
-  // getGenres: () => void
+  getGenres?: () => void
 }
 
 const useHomeStore = create<Home>((set) => {

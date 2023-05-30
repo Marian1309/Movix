@@ -3,17 +3,15 @@ import { useEffect, useState } from 'react'
 
 import { useRouter } from 'next/router'
 
-import { ContextWrapper, LazyLoadImage } from '@components/common'
-
 import useHomeStore from '@context/homeStore'
 
 import { useTMDB } from '@hooks'
 
+import { ContextWrapper, LazyLoadImage } from '@components/common'
+
 import styles from './HeroBanner.module.scss'
 
-interface HeroBannerProps {}
-
-const HeroBanner: FC<HeroBannerProps> = ({}) => {
+const HeroBanner: FC = () => {
   const [background, setBackground] = useState<string>('')
   const [query, setQuery] = useState<string>('')
   const router = useRouter()

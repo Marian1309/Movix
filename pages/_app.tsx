@@ -4,11 +4,11 @@ import type { AppProps } from 'next/app'
 import { DynaPuff } from 'next/font/google'
 import Head from 'next/head'
 
-import { Footer, Header } from '@components/common'
-
 import TanstackReactQueryContainer from '@libs/@tanstack-query'
 
 import { ICONS } from '@utils/constants'
+
+import { Footer, Header } from '@components/common'
 
 import '@styles/globals.scss'
 
