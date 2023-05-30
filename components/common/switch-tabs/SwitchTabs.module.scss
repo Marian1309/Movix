@@ -1,0 +1,23 @@
+.switchingTabs {
+  @apply h-[34px] bg-white rounded-[20px] p-[2px];
+
+  .tabItems {
+    @apply flex items-center h-[30px] relative;
+
+    .tabItem {
+      @apply h-full flex items-center justify-center w-[100px] text-[var(--black)]
+      text-[14px] relative z-[1] cursor-pointer;
+      transition: color ease 0.3s;
+
+      .active {
+        @apply text-white;
+      }
+    }
+
+    .movingBg {
+      @apply h-[30px] w-[100px] rounded-[15px] absolute left-0;
+      transition: left cubic-bezier(0.88, -0.35, 0.565, 1.35) 0.4s;
+      background: var(--gradient);
+    }
+  }
+}
