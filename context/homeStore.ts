@@ -24,15 +24,17 @@ interface Home {
     backdrop?: string
     poster?: string
   }
-  genres?: {}
+  genres: any[]
   getApiConfiguration: (payload: any) => void
-  getGenres?: () => void
+  getGenres: (payload: any) => void
 }
 
 const useHomeStore = create<Home>((set) => {
   return {
     url: {},
-    getApiConfiguration: (payload) => set(() => ({ url: payload }))
+    genres: [],
+    getApiConfiguration: (payload) => set(() => ({ url: payload })),
+    getGenres: (payload) => set(() => ({ genres: payload }))
   }
 })
 

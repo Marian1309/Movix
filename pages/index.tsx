@@ -9,7 +9,7 @@ import { fetchFromTMDB } from '@utils/helpers'
 import { HeroBanner, Trending } from '@components/screens/home'
 
 const Home: NextPage = () => {
-  const { getApiConfiguration } = useHomeStore()
+  const { getApiConfiguration, getGenres } = useHomeStore()
 
   const fetchConfiguration = async () => {
     const response = await fetchFromTMDB('/configuration')
@@ -22,8 +22,24 @@ const Home: NextPage = () => {
     getApiConfiguration(url)
   }
 
+  const genresCall = async () => {
+    const promises: any[] = []
+    const endPoints: string[] = ['tv', 'movie']
+    const allGenres: any = {}
+
+    endPoints.forEach((endPoint) =>
+      promises.push(fetchFromTMDB(`/genre/${endPoint}/list`))
+    )
+
+    const data = await Promise.all(promises)
+
+    data.map(({ genres }) => genres.map((item: any) => (allGenres[item.id] = item)))
+
+    getGenres(allGenres)
+  }
+
   useEffect(() => {
-    fetchConfiguration()
+    Promise.all([genresCall(), fetchConfiguration()])
   }, [])
 
   return (

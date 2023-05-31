@@ -8,7 +8,7 @@ import useHomeStore from '@context/homeStore'
 
 import { ICONS } from '@utils/constants'
 
-import { CircleRating, ContextWrapper, LazyLoadImage } from '@components/common'
+import { CircleRating, ContextWrapper, Genres, LazyLoadImage } from '@components/common'
 
 import styles from './Carousel.module.scss'
 
@@ -61,6 +61,7 @@ const Carousel: FC<CarouselProps> = ({ data, isLoading }) => {
                   <div className={styles.posterBlock}>
                     <LazyLoadImage src={posterUrl} />
                     <CircleRating rating={item.vote_average.toFixed(1)} />
+                    <Genres data={item.genre_ids} />
                   </div>
 
                   <div className={styles.textBlock}>
