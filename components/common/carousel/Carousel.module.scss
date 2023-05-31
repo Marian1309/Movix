@@ -12,11 +12,11 @@
   }
 
   .carouselLeftNav {
-    @apply left-[30px];
+    @apply left-[30px] top-[40%];
   }
 
   .carouselRighttNav {
-    @apply right-[30px];
+    @apply right-[30px] top-[40%];
   }
 
   .loadingSkeleton {

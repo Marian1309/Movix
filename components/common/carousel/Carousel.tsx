@@ -1,4 +1,7 @@
 import type { FC } from 'react'
+import { useRef } from 'react'
+
+import { useRouter } from 'next/router'
 
 import clsx from 'clsx'
 import dayjs from 'dayjs'
@@ -18,10 +21,23 @@ interface CarouselProps {
 }
 
 const Carousel: FC<CarouselProps> = ({ data, isLoading }) => {
+  const carouselContainer = useRef<HTMLDivElement>(null)
+
   const { url } = useHomeStore()
+  const router = useRouter()
 
   const navigation = (dir: 'left' | 'right') => {
-    console.log(dir)
+    const container: any = carouselContainer.current
+
+    const scrollAmount =
+      dir === 'left'
+        ? container.scrollLeft - (container.offsetWidth + 20)
+        : container.scrollLeft + (container.offsetWidth + 20)
+
+    container.scrollTo({
+      left: scrollAmount,
+      behaviour: 'smooth'
+    })
   }
 
   const skItem = () => {
@@ -49,7 +65,7 @@ const Carousel: FC<CarouselProps> = ({ data, isLoading }) => {
         />
 
         {!isLoading ? (
-          <div className={styles.carouselItems}>
+          <div className={styles.carouselItems} ref={carouselContainer}>
             {data.map((item: any) => {
               const posterUrl = item.poster_path
                 ? `${url.poster}${item.poster_path}`
@@ -57,7 +73,11 @@ const Carousel: FC<CarouselProps> = ({ data, isLoading }) => {
               const formattedDate = dayjs(item.release_Date).format('MMM D, YYYY')
 
               return (
-                <div className={styles.carouselItem} key={item.id}>
+                <div
+                  className={styles.carouselItem}
+                  key={item.id}
+                  onClick={() => router.push(`/${item.media_type}/${item.id}`)}
+                >
                   <div className={styles.posterBlock}>
                     <LazyLoadImage src={posterUrl} />
                     <CircleRating rating={item.vote_average.toFixed(1)} />
