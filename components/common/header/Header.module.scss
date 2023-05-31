@@ -84,3 +84,10 @@
     transform: translateY(0);
   }
 }
+
+.logo {
+  will-change: filter;
+  &:hover {
+    filter: drop-shadow(0 0 2em #646cffaa);
+  }
+}

@@ -44,10 +44,10 @@ const Carousel: FC<CarouselProps> = ({ data, isLoading, endpoint }) => {
   const skItem = () => {
     return (
       <div className={styles.skeletonItem}>
-        <div className={clsx(styles.posterBlock)} />
+        <div className={styles.posterBlock} />
         <div className={styles.textBlock}>
-          <div className={clsx(styles.title)} />
-          <div className={clsx(styles.date)} />
+          <div className={styles.title} />
+          <div className={styles.date} />
         </div>
       </div>
     )
@@ -84,7 +84,7 @@ const Carousel: FC<CarouselProps> = ({ data, isLoading, endpoint }) => {
                   <div className={styles.posterBlock}>
                     <LazyLoadImage src={posterUrl} />
                     <CircleRating rating={item.vote_average.toFixed(1)} />
-                    <Genres data={item.genre_ids} />
+                    <Genres className='flex-col' data={item.genre_ids} />
                   </div>
 
                   <div className={styles.textBlock}>

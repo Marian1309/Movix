@@ -1,7 +1,7 @@
 @import '@styles/mixins.scss';
 
 .genres {
-  @apply flex gap-[5px] absolute flex-col right-[10px] p-1;
+  @apply flex gap-[5px] absolute right-[10px] p-1;
 
   .genre {
     @apply py-[3px] px-[5px] md:text-[10px] lg:text-[14px] rounded-[4px] text-white whitespace-nowrap bg-[var(--pink)];
