@@ -18,9 +18,10 @@ import styles from './Carousel.module.scss'
 interface CarouselProps {
   data: any
   isLoading: boolean
+  endpoint: string
 }
 
-const Carousel: FC<CarouselProps> = ({ data, isLoading }) => {
+const Carousel: FC<CarouselProps> = ({ data, isLoading, endpoint }) => {
   const carouselContainer = useRef<HTMLDivElement>(null)
 
   const { url } = useHomeStore()
@@ -76,7 +77,9 @@ const Carousel: FC<CarouselProps> = ({ data, isLoading }) => {
                 <div
                   className={styles.carouselItem}
                   key={item.id}
-                  onClick={() => router.push(`/${item.media_type}/${item.id}`)}
+                  onClick={() =>
+                    router.push(`/${item.media_type || endpoint}/${item.id}`)
+                  }
                 >
                   <div className={styles.posterBlock}>
                     <LazyLoadImage src={posterUrl} />

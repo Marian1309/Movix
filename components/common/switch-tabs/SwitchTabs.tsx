@@ -15,11 +15,11 @@ const SwitchTabs: FC<SwitchTabsProps> = ({ data, onTabChange }) => {
   const [left, setLeft] = useState<number>(0)
 
   const activeTab = (tab: string, i: number) => {
+    onTabChange(tab)
     setLeft(i * 100)
     setTimeout(() => {
       setSelectedTab(i)
     }, 300)
-    onTabChange(tab)
   }
 
   return (

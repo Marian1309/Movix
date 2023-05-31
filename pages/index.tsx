@@ -6,7 +6,7 @@ import useHomeStore from '@context/homeStore'
 
 import { fetchFromTMDB } from '@utils/helpers'
 
-import { HeroBanner, Trending } from '@components/screens/home'
+import { HeroBanner, Popular, TopRated, Trending } from '@components/screens/home'
 
 const Home: NextPage = () => {
   const { getApiConfiguration, getGenres } = useHomeStore()
@@ -46,6 +46,8 @@ const Home: NextPage = () => {
     <>
       <HeroBanner />
       <Trending />
+      <Popular />
+      <TopRated />
     </>
   )
 }

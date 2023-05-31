@@ -1,7 +1,7 @@
 @import '@styles/mixins.scss';
 
 .carousel {
-  @apply mb-[50px];
+  @apply mb-[50px] selection:hidden;
 
   .carouselTitle {
     @apply text-[24px] text-white mb-[20px] font-normal;

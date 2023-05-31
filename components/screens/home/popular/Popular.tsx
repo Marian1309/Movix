@@ -5,15 +5,16 @@ import { useTMDB } from '@hooks'
 
 import { Carousel, ContextWrapper, SwitchTabs } from '@components/common'
 
-import styles from './Trending.module.scss'
+import styles from './Popular.module.scss'
 
-const Trending: FC = () => {
-  const [endpoint, setEndpoint] = useState<'day' | 'week'>('day')
+const Popular: FC = () => {
+  const [endpoint, setEndpoint] = useState<'movie' | 'tv'>('movie')
 
-  const { data, isLoading, refetch } = useTMDB('trending', `/trending/all/${endpoint}`)
+  const { data, isLoading, refetch } = useTMDB('popular', `/${endpoint}/popular`)
 
   const onTabChange = (tab: string) => {
-    setEndpoint(tab === 'Day' ? 'day' : 'week')
+    console.log(tab)
+    setEndpoint(tab === 'Movies' ? 'movie' : 'tv')
     setTimeout(() => {
       refetch()
     }, 10)
@@ -22,9 +23,9 @@ const Trending: FC = () => {
   return (
     <div className={styles.carouselSection}>
       <ContextWrapper className='flex items-center justify-between'>
-        <span className={styles.carouselTitle}>Trending</span>
+        <span className={styles.carouselTitle}>What is on Popular</span>
 
-        <SwitchTabs data={['Day', 'Week']} onTabChange={onTabChange} />
+        <SwitchTabs data={['Movies', 'TV Shows']} onTabChange={onTabChange} />
       </ContextWrapper>
 
       <Carousel data={data?.results} endpoint={endpoint} isLoading={isLoading} />
@@ -32,4 +33,4 @@ const Trending: FC = () => {
   )
 }
 
-export default Trending
+export default Popular

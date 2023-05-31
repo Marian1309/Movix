@@ -5,10 +5,10 @@ import { fetchFromTMDB } from '@utils/helpers'
 type UseAxiosQuery = (
   key: string,
   url: string
-) => { data: any; isLoading: boolean; isError: boolean; error: any }
+) => { data: any; isLoading: boolean; isError: boolean; error: any; refetch: () => void }
 
 const useAxiosQuery: UseAxiosQuery = (key, url) => {
-  const { data, isLoading, isError, error } = useQuery({
+  const { data, isLoading, isError, error, refetch } = useQuery({
     queryKey: [key],
     queryFn: async () => {
       const data = await fetchFromTMDB(url)
@@ -20,7 +20,8 @@ const useAxiosQuery: UseAxiosQuery = (key, url) => {
     data,
     isLoading,
     isError,
-    error
+    error,
+    refetch
   }
 }
 
