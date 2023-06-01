@@ -19,9 +19,10 @@ interface CarouselProps {
   data: any
   isLoading: boolean
   endpoint: string
+  title?: string
 }
 
-const Carousel: FC<CarouselProps> = ({ data, isLoading, endpoint }) => {
+const Carousel: FC<CarouselProps> = ({ data, isLoading, endpoint, title }) => {
   const carouselContainer = useRef<HTMLDivElement>(null)
 
   const { url } = useHomeStore()
@@ -56,6 +57,8 @@ const Carousel: FC<CarouselProps> = ({ data, isLoading, endpoint }) => {
   return (
     <div className={styles.carousel}>
       <ContextWrapper className='relative'>
+        {title && <div className={styles.carouselTitle}>{title}</div>}
+
         <BsFillArrowLeftCircleFill
           className={clsx(styles.arrow, styles.carouselLeftNav)}
           onClick={() => navigation('left')}
