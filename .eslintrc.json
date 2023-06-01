@@ -128,7 +128,8 @@
     "@typescript-eslint/no-var-requires": "off",
     "no-unused-vars": "off",
     "guard-for-in": "off",
-    "@typescript-eslint/no-empty-interface": "off"
+    "@typescript-eslint/no-empty-interface": "off",
+    "no-extra-boolean-cast": "off"
   },
   "globals": {
     "process": true,

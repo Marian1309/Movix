@@ -1,5 +1,6 @@
 {
   "favicon": "/icons/movix-logo.png",
   "logo": "/icons/movix-logo.svg",
-  "no-poster": "/icons/no-poster.png"
+  "no-poster": "/icons/no-poster.png",
+  "avatar": "/icons/avatar.png"
 }

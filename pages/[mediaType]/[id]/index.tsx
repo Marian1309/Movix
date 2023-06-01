@@ -2,7 +2,7 @@ import type { GetServerSideProps, NextPage } from 'next'
 
 import fetchFromTMDB from '@utils/helpers/tmdb'
 
-import { DetailsBanner } from '@components/screens/details'
+import { Cast, DetailsBanner } from '@components/screens/details'
 
 interface DetailsPageProps {
   videos: any
@@ -22,6 +22,7 @@ const DetailsPage: NextPage<DetailsPageProps> = ({ videos, credits, details }) =
   return (
     <div>
       <DetailsBanner crew={credits?.crew} data={details} video={videos?.results[0]} />
+      <Cast data={credits.cast} />
     </div>
   )
 }

@@ -23,6 +23,7 @@ interface Home {
     total_results?: number
     backdrop?: string
     poster?: string
+    profile?: string
   }
   genres: any[]
   getApiConfiguration: (payload: any) => void

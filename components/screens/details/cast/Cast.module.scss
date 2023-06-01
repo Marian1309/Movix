@@ -1,0 +1,61 @@
+@import '@styles/mixins.scss';
+
+.castSection {
+  @apply relative mb-[50px];
+
+  .sectionHeading {
+    @apply text-2xl text-white mb-[25px];
+  }
+
+  .listItems {
+    @apply flex gap-[20px] overflow-y-hidden mr-[-20px] ml-[-20px] py-0 px-[20px] md:m-0 md:p-0;
+
+    .listItem {
+      @apply text-center text-white;
+
+      .profileImg {
+        @apply w-[125px] h-[125px] rounded-full overflow-hidden mb-[15px];
+        @include md {
+          width: 175px;
+          height: 175px;
+          margin-bottom: 25px;
+        }
+
+        img {
+          @apply w-full h-full bg-cover object-top block;
+        }
+      }
+
+      .name {
+        @apply text-[14px] leading-5 font-bold md:text-[18px] md:leading-6;
+      }
+
+      .character {
+        @apply text-[14px] leading-5 opacity-50 md:text-[16px] md:leading-6;
+      }
+    }
+  }
+
+  .castSkeleton {
+    @apply flex gap-[20px] overflow-y-hidden mr-[-20px] ml-[-20px] py-0 px-[20px] md:m-0 md:p-0;
+
+    .skItem {
+      .circle {
+        @apply w-[125px] h-[125px] rounded-full mb-[15px];
+        @include md {
+          width: 175px;
+          height: 175px;
+          margin-bottom: 25px;
+        }
+      }
+
+      .row {
+        @apply w-full h-[20px] rounded-[10px] mb-[10px];
+      }
+
+      .row2 {
+        @apply w-[75%] h-[20px] rounded-[10px] my-0 mx-auto;
+      }
+    }
+  }
+}

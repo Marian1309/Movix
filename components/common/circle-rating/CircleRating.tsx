@@ -13,10 +13,12 @@ const CircleRating: FC<CircleRatingProps> = ({ rating }) => {
   return (
     <div className={styles.circleRating}>
       <CircularProgressbar
-        className={styles['CircularProgressbar-text']}
         maxValue={10}
         styles={buildStyles({
-          pathColor: rating < 5 ? 'red' : rating < 7 ? 'orange' : 'green'
+          pathColor: rating < 5 ? 'red' : rating < 7 ? 'orange' : 'green',
+          textColor: 'white',
+          trailColor: 'var(--black3)',
+          textSize: '32px'
         })}
         text={`${rating}`}
         value={rating}

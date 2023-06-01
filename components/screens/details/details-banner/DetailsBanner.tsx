@@ -78,7 +78,7 @@ const DetailsBanner: FC<DetailsBannerProps> = ({ video, crew, data }) => {
                       />
                     )}
 
-                    <div className='relative top-0'>
+                    <div className='relative top-0 '>
                       <CircleRating rating={data.vote_average?.toFixed(1)} />
                     </div>
                   </div>

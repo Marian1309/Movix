@@ -1,8 +1,10 @@
 .circleRating {
-  @apply rounded-full p-[3px] left-[0px] bottom-[0px] absolute w-[70px] bg-white;
+  @apply rounded-full p-[2px] left-[0px] bottom-[0px] absolute w-[70px] bg-[var(--black3)];
+  color: white !important;
 
   .CircularProgressbar-text {
-    @apply text-[34px] font-bold fill-[var(--black)];
+    @apply text-[40px] font-bold;
+    fill: var(--black);
   }
 
   .CircularProgressbar-trail {
