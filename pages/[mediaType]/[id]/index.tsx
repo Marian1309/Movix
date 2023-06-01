@@ -1,8 +1,10 @@
+import { useEffect, useState } from 'react'
+
 import type { GetServerSideProps, NextPage } from 'next'
 
 import fetchFromTMDB from '@utils/helpers/tmdb'
 
-import { Cast, DetailsBanner } from '@components/screens/details'
+import { Cast, DetailsBanner, Videos } from '@components/screens/details'
 
 interface DetailsPageProps {
   videos: any
@@ -19,11 +21,22 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 }
 
 const DetailsPage: NextPage<DetailsPageProps> = ({ videos, credits, details }) => {
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   return (
-    <div>
-      <DetailsBanner crew={credits?.crew} data={details} video={videos?.results[0]} />
-      <Cast data={credits.cast} />
-    </div>
+    <>
+      {mounted && (
+        <>
+          <DetailsBanner crew={credits?.crew} data={details} video={videos?.results[0]} />
+          <Cast data={credits.cast} />
+          <Videos data={videos} />
+        </>
+      )}
+    </>
   )
 }
 

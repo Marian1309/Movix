@@ -1,6 +1,21 @@
 import type { FC } from 'react'
 
-import styles from './DetailsBanner.module.scss'
+const styles = {
+  triangle: {
+    strokeDasharray: 240,
+    strokeDashoffset: 480,
+    stroke: 'white',
+    transform: 'translateY(0)',
+    transition: 'all 0.7s ease-in-out'
+  },
+
+  circle: {
+    stroke: 'white',
+    strokeDasharray: 650,
+    strokeDashoffset: 1300,
+    transition: 'all 0.5s ease-in-out'
+  }
+}
 
 const PlayIcon: FC = () => {
   return (
@@ -17,16 +32,15 @@ const PlayIcon: FC = () => {
       y='0px'
     >
       <polygon
-        className={styles.triangle}
         fill='none'
         points='73.5,62.5 148.5,105.8 73.5,149.1 '
         strokeLinecap='round'
         strokeLinejoin='round'
         strokeMiterlimit='10'
         strokeWidth='7'
+        style={styles.triangle}
       />
       <circle
-        className={styles.circle}
         cx='106.8'
         cy='106.8'
         fill='none'
@@ -35,6 +49,7 @@ const PlayIcon: FC = () => {
         strokeLinejoin='round'
         strokeMiterlimit='10'
         strokeWidth='7'
+        style={styles.circle}
       />
     </svg>
   )
