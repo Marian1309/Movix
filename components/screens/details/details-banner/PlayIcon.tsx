@@ -1,5 +1,7 @@
 import type { FC } from 'react'
 
+import styles from './DetailsBanner.module.scss'
+
 const PlayIcon: FC = () => {
   return (
     <svg
@@ -15,7 +17,7 @@ const PlayIcon: FC = () => {
       y='0px'
     >
       <polygon
-        className='triangle'
+        className={styles.triangle}
         fill='none'
         points='73.5,62.5 148.5,105.8 73.5,149.1 '
         strokeLinecap='round'
@@ -24,7 +26,7 @@ const PlayIcon: FC = () => {
         strokeWidth='7'
       />
       <circle
-        className='circle'
+        className={styles.circle}
         cx='106.8'
         cy='106.8'
         fill='none'

@@ -1,125 +1,86 @@
 @import '@styles/mixins.scss';
 
 .detailsBanner {
-  width: 100%;
-  background-color: var(--black);
-  padding-top: 100px;
-  margin-bottom: 50px;
+  @apply w-full pt-[100px] mb-[50px] bg-[var(--black)];
   @include md {
     margin-bottom: 0;
     padding-top: 120px;
     min-height: 700px;
   }
+
   .backdrop-img {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0.1;
-    overflow: hidden;
+    @apply w-full h-full absolute top-0 left-0 opacity-10 overflow-hidden;
+
     .lazy-load-image-background {
-      width: 100%;
-      height: 100%;
+      @apply w-full h-full;
       img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
+        @apply w-full h-full bg-cover bg-center;
       }
     }
   }
   .opacity-layer {
-    width: 100%;
-    height: 250px;
+    @apply w-full h-[250px] absolute bottom-0 left-0;
     background: linear-gradient(180deg, rgba(4, 21, 45, 0) 0%, #04152d 79.17%);
-    position: absolute;
-    bottom: 0;
-    left: 0;
   }
 
   .content {
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    gap: 25px;
-
+    @apply flex relative flex-col gap-[25px];
     @include md {
       gap: 50px;
       flex-direction: row;
       align-items: center;
     }
+
     .left {
-      flex-shrink: 0;
+      @apply flex-shrink-0;
       .posterImg {
-        width: 100%;
-        display: block;
-        border-radius: 12px;
-        @include md {
-          max-width: 350px;
-        }
+        @apply w-full block rounded-[12px] md:max-w-[350px];
       }
     }
+
     .right {
-      color: white;
+      @apply text-white;
       .title {
-        font-size: 28px;
-        line-height: 40px;
-        @include md {
-          font-size: 34px;
-          line-height: 44px;
-        }
+        @apply text-[28px] leading-[40xpx] md:text-[34px] md:leading-[44px];
       }
+
       .subtitle {
-        font-size: 16px;
-        line-height: 24px;
-        margin-bottom: 15px;
-        font-style: italic;
-        opacity: 0.5;
-        @include md {
-          font-size: 20px;
-          line-height: 28px;
-        }
+        @apply text-[16px] leading-6 mb-[15px] italic opacity-50 md:text-xl md:leading-7;
       }
+
       .genres {
-        margin-bottom: 25px;
-        flex-flow: row wrap;
+        @apply mb-[25px] flex-row flex-wrap;
       }
+
       .overview {
-        margin-bottom: 25px;
+        @apply mb-[25px];
         .heading {
-          font-size: 24px;
-          margin-bottom: 10px;
+          @apply text-2xl;
         }
         .description {
-          line-height: 24px;
+          @apply leading-6;
         }
       }
+
       .circleRating {
-        max-width: 70px;
-        background-color: var(--black2);
-        @include md {
-          max-width: 90px;
-        }
+        @apply max-w-[70px] bg-[var(--black2)] md:max-w-[90px];
+
         .CircularProgressbar-text {
           fill: white;
         }
       }
+
       .playbtn {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-        cursor: pointer;
+        @apply flex items-center gap-5 cursor-pointer;
         svg {
-          width: 60px;
-          @include md {
-            width: 80px;
-          }
+          @apply w-[60px] md:w-[80px];
         }
+
         .text {
           font-size: 20px;
           transition: all 0.7s ease-in-out;
         }
+
         .triangle {
           stroke-dasharray: 240;
           stroke-dashoffset: 480;
@@ -127,12 +88,14 @@
           transform: translateY(0);
           transition: all 0.7s ease-in-out;
         }
+
         .circle {
           stroke: white;
           stroke-dasharray: 650;
           stroke-dashoffset: 1300;
           transition: all 0.5s ease-in-out;
         }
+
         &:hover {
           .text {
             color: var(--pink);
@@ -149,29 +112,23 @@
           }
         }
       }
+
       .row {
-        display: flex;
-        align-items: center;
-        gap: 25px;
-        margin-bottom: 25px;
+        @apply flex items-center gap-[25px] mb-[25px];
       }
 
       .info {
+        @apply py-[15px] px-0 flex;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        padding: 15px 0;
-        display: flex;
+
         .infoItem {
-          margin-right: 10px;
-          display: flex;
-          flex-flow: row wrap;
+          @apply mr-[10px] flex flex-wrap;
         }
+
         .text {
-          margin-right: 10px;
-          opacity: 0.5;
-          line-height: 24px;
+          @apply mr-[10px] opacity-50 left-6;
           &.bold {
-            font-weight: 600;
-            opacity: 1;
+            @apply font-[600] opacity-100;
           }
         }
       }
