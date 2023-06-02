@@ -31,9 +31,10 @@ interface MovieCardProps {
     vote_count: number
   }
   fromSearch: boolean
+  mediaType?: string
 }
 
-const MovieCard: FC<MovieCardProps> = ({ data, fromSearch }) => {
+const MovieCard: FC<MovieCardProps> = ({ data, fromSearch, mediaType }) => {
   const router = useRouter()
   const { url } = useHomeStore()
 
@@ -42,7 +43,7 @@ const MovieCard: FC<MovieCardProps> = ({ data, fromSearch }) => {
     : ICONS['no-poster']
 
   const changeRoute = () => {
-    router.push(`/${data.media_type}/${data.id}`)
+    router.push(`/${data.media_type || mediaType}/${data.id}`)
   }
 
   return (

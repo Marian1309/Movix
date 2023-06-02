@@ -1,0 +1,15 @@
+.pageNotFound {
+  @apply h-[700px] pt-[200px];
+
+  .contentWrapper {
+    @apply text-center flex flex-col text-[var(--black-light)];
+
+    .bigText {
+      @apply text-[150px] font-bold;
+    }
+
+    .smallText {
+      @apply text-[44px];
+    }
+  }
+}
