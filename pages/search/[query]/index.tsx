@@ -8,6 +8,7 @@ import { ICONS } from '@utils/constants'
 import { fetchFromTMDB } from '@utils/helpers'
 
 import { ContextWrapper, Spinner } from '@components/common'
+import { MovieCard } from '@components/screens/search'
 
 import styles from './index.module.scss'
 
@@ -41,9 +42,11 @@ const SearchPage: NextPage<SearchPageProps> = ({ query }) => {
       setData(response)
     }
     setPageNum((prev) => prev + 1)
+    setIsLoading(false)
   }
 
   useEffect(() => {
+    setPageNum(1)
     fetchInitialData()
   }, [query])
 
@@ -54,11 +57,25 @@ const SearchPage: NextPage<SearchPageProps> = ({ query }) => {
   return (
     <div className={styles.searchResultsPage}>
       <ContextWrapper>
-        {data?.results.length > 0 ? (
+        {data?.results?.length > 0 ? (
           <>
             <div className={styles.pageTitle}>
-              {`Search ${data.total_results > 1 ? 'results' : 'result'} of ${query}`}
+              {`Search ${data?.total_results > 1 ? 'results' : 'result'} of '${query}'`}
             </div>
+
+            <InfiniteScroll
+              className={styles.content}
+              dataLength={data?.results?.length || []}
+              hasMore={pageNum <= data?.total_pages}
+              loader={<Spinner />}
+              next={fetchNextPageData}
+            >
+              {data?.results.map((item: any, index: number) => {
+                if (item?.media_type === 'person') return
+
+                return <MovieCard data={item} fromSearch={true} key={index} />
+              })}
+            </InfiniteScroll>
           </>
         ) : (
           <span className={styles.resultNotFound}>Sorry, Results not found!</span>

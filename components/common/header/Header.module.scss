@@ -69,7 +69,7 @@
         @apply text-[20px] flex-shrink-0 ml-[10px] cursor-pointer;
       }
       input {
-        @apply w-full h-[50px] bg-white outline-0 border-0 py-0 px-[15px] text-[14px] md:h-[60px] md:text-[20px] md:py-0 md:px-[30px];
+        @apply w-full h-[50px] bg-white outline-0 text-black border-0 py-0 px-[15px] text-[14px] md:h-[60px] md:text-[20px] md:py-0 md:px-[30px];
         border-radius: 30px 0 0 30px;
       }
     }
