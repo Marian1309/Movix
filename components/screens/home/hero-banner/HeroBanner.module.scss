@@ -34,7 +34,7 @@
 
       input {
         width: calc(100% - 100px);
-        @apply h-[50px] bg-white outline-0 border-0 py-0 px-[15px] text-[14px];
+        @apply h-[50px] bg-white outline-0 border-0 py-0 px-[15px] text-[14px] rounded-tl-full rounded-bl-full;
 
         @include md {
           width: calc(100% - 150px);

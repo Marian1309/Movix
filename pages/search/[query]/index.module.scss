@@ -1,0 +1,23 @@
+@import '@styles/mixins.scss';
+
+.searchResultsPage {
+  @apply min-h-[700px] pt-[100px];
+
+  .resultNotFound {
+    @apply text-2xl text-[var(--black-light)];
+  }
+
+  .pageTitle {
+    @apply text-2xl leading-[34px] text-white mb-[25px];
+  }
+
+  .content {
+    @apply flex flex-wrap gap-[10px] mb-[50px] md:gap-[20px];
+
+    .movieCard {
+      .posterBlock {
+        @apply mb-[20px];
+      }
+    }
+  }
+}
