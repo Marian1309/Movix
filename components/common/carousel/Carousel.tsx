@@ -11,7 +11,7 @@ import useHomeStore from '@context/homeStore'
 
 import { ICONS } from '@utils/constants'
 
-import { CircleRating, ContextWrapper, Genres, LazyLoadImage } from '@components/common'
+import { CircleRating, ContentWrapper, Genres, LazyLoadImage } from '@components/common'
 
 import styles from './Carousel.module.scss'
 
@@ -56,7 +56,7 @@ const Carousel: FC<CarouselProps> = ({ data, isLoading, endpoint, title }) => {
 
   return (
     <div className={styles.carousel}>
-      <ContextWrapper className='relative'>
+      <ContentWrapper className='relative'>
         {title && <div className={styles.carouselTitle}>{title}</div>}
 
         <BsFillArrowLeftCircleFill
@@ -103,7 +103,7 @@ const Carousel: FC<CarouselProps> = ({ data, isLoading, endpoint, title }) => {
             {skItem()} {skItem()} {skItem()} {skItem()} {skItem()}
           </div>
         )}
-      </ContextWrapper>
+      </ContentWrapper>
     </div>
   )
 }

@@ -2,10 +2,12 @@ import { useQuery } from '@tanstack/react-query'
 
 import { fetchFromTMDB } from '@utils/helpers'
 
-type UseAxiosQuery = (
-  key: string,
+type Key = 'trending' | 'popular' | 'top-rated' | 'recommendations' | 'similar'
+
+type UseAxiosQuery = <T>(
+  key: Key,
   url: string
-) => { data: any; isLoading: boolean; isError: boolean; error: any; refetch: () => void }
+) => { data: T; isLoading: boolean; isError: boolean; error: any; refetch: () => void }
 
 const useAxiosQuery: UseAxiosQuery = (key, url) => {
   const { data, isLoading, isError, error, refetch } = useQuery({

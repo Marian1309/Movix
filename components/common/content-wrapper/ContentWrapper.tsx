@@ -7,7 +7,7 @@ interface ContextWrapperProps {
   className?: string
 }
 
-const ContextWrapper: FC<ContextWrapperProps> = ({ children, className }) => {
+const ContentWrapper: FC<ContextWrapperProps> = ({ children, className }) => {
   return (
     <div className={clsx('w-full max-w-[1200px] my-0 mx-auto py-0 px-[20px]', className)}>
       {children}
@@ -15,4 +15,4 @@ const ContextWrapper: FC<ContextWrapperProps> = ({ children, className }) => {
   )
 }
 
-export default ContextWrapper
+export default ContentWrapper

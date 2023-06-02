@@ -3,7 +3,7 @@ import type { FC } from 'react'
 import type { IconType } from 'react-icons'
 import { FaFacebookF, FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa'
 
-import { ContextWrapper } from '@components/common'
+import { ContentWrapper } from '@components/common'
 
 import styles from './Footer.module.scss'
 
@@ -25,10 +25,12 @@ const Footer: FC = () => {
 
   return (
     <footer className={styles.footer}>
-      <ContextWrapper>
+      <ContentWrapper>
         <ul className={styles.menuItems}>
           {menuItems.map(({ title }, index) => (
-            <li key={index}>{title}</li>
+            <li className={styles.menuItem} key={index}>
+              {title}
+            </li>
           ))}
         </ul>
 
@@ -47,7 +49,7 @@ const Footer: FC = () => {
             </span>
           ))}
         </div>
-      </ContextWrapper>
+      </ContentWrapper>
     </footer>
   )
 }

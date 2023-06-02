@@ -3,16 +3,16 @@ import { useEffect } from 'react'
 
 import type { AppProps } from 'next/app'
 import { DynaPuff } from 'next/font/google'
-import Head from 'next/head'
 
 import TanstackReactQueryContainer from '@libs/@tanstack-query'
+import ToastContainer from '@libs/react-toastify'
 
 import useHomeStore from '@context/homeStore'
 
 import { ICONS } from '@utils/constants'
 import { fetchFromTMDB } from '@utils/helpers'
 
-import { Footer, Header } from '@components/common'
+import { Footer, Head, Header } from '@components/common'
 
 import '@styles/globals.scss'
 
@@ -54,17 +54,19 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
 
   return (
     <div className={dynaPyff.className}>
-      <Head>
-        <title>Movix</title>
-        <link href={ICONS.favicon} rel='shortcut icon' />
-        <meta content='Movix - Service for movies' name='description' />
-      </Head>
+      <Head
+        description='Movix - Service for movies'
+        favicon={ICONS.favicon}
+        title='Movix'
+      />
 
-      <TanstackReactQueryContainer>
-        <Header />
-        <Component {...pageProps} />
-        <Footer />
-      </TanstackReactQueryContainer>
+      <ToastContainer>
+        <TanstackReactQueryContainer>
+          <Header />
+          <Component {...pageProps} />
+          <Footer />
+        </TanstackReactQueryContainer>
+      </ToastContainer>
     </div>
   )
 }

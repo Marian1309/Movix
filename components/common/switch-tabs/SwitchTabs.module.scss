@@ -5,13 +5,14 @@
     @apply flex items-center h-[30px] relative;
 
     .tabItem {
-      @apply h-full flex items-center justify-center w-[100px] text-[var(--black)]
+      @apply h-full flex items-center justify-center w-[100px]
       text-[14px] relative z-[1] cursor-pointer;
       transition: all ease 0.3s;
+      color: var(--black);
+    }
 
-      .active {
-        @apply text-white;
-      }
+    .active {
+      @apply text-white;
     }
 
     .movingBg {

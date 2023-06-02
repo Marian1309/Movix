@@ -7,20 +7,27 @@ import useHomeStore from '@context/homeStore'
 import styles from './Genres.module.scss'
 
 interface GenresProps {
-  data: any
+  data: number[]
   className?: string
 }
 
+type Genres = {
+  [key: number]: {
+    id: number
+    name: string
+  }
+}
+
 const Genres: FC<GenresProps> = ({ data, className }) => {
-  const { genres } = useHomeStore()
+  const { genres }: { genres: Genres } = useHomeStore()
 
   return (
     <div className={clsx(styles.genres, className)}>
-      {data?.map((g: any, index: number) => {
+      {data?.map((g) => {
         if (!genres[g]?.name) return
 
         return (
-          <div className={styles.genre} key={index}>
+          <div className={styles.genre} key={g}>
             {genres[g]?.name}
           </div>
         )

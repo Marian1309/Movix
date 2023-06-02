@@ -29,9 +29,9 @@
     @apply list-none hidden items-center md:flex;
 
     .menuItem {
-      @apply h-[60px] flex items-center my-0 mx-[15px] text-white font-normal relative;
+      @apply h-[60px] flex items-center my-0 mx-[15px] text-white font-normal relative hover:text-red-600 cursor-pointer transition-colors;
 
-      &.searchIcon {
+      .searchIcon {
         @apply mr-0 cursor-pointer hover:text-[var(--pink)];
       }
       svg {

@@ -1,9 +1,11 @@
 import type { FC } from 'react'
 import { useState } from 'react'
 
+import type { Tab } from '@types'
+
 import { useTMDB } from '@hooks'
 
-import { Carousel, ContextWrapper, SwitchTabs } from '@components/common'
+import { Carousel, ContentWrapper, SwitchTabs } from '@components/common'
 
 import styles from './Trending.module.scss'
 
@@ -12,7 +14,7 @@ const Trending: FC = () => {
 
   const { data, isLoading, refetch } = useTMDB('trending', `/trending/all/${endpoint}`)
 
-  const onTabChange = (tab: string) => {
+  const onTabChange = (tab: Tab) => {
     setEndpoint(tab === 'Day' ? 'day' : 'week')
     setTimeout(() => {
       refetch()
@@ -21,11 +23,11 @@ const Trending: FC = () => {
 
   return (
     <div className={styles.carouselSection}>
-      <ContextWrapper className='flex items-center justify-between'>
+      <ContentWrapper className='flex items-center justify-between'>
         <span className={styles.carouselTitle}>Trending</span>
 
         <SwitchTabs data={['Day', 'Week']} onTabChange={onTabChange} />
-      </ContextWrapper>
+      </ContentWrapper>
 
       <Carousel data={data?.results} endpoint={endpoint} isLoading={isLoading} />
     </div>

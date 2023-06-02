@@ -1,19 +1,23 @@
 import type { FC } from 'react'
 
-import useAxiosQuery from 'hooks/useTMDB'
+import { useTMDB } from '@hooks'
 
 import { Carousel } from '@components/common'
 
 interface SimilarProps {
   mediaType: 'movie' | 'tv'
-  id: number | string
+  id: string
+}
+
+type Similar = {
+  page: number
+  results: unknown[]
+  total_pages: number
+  total_results: number
 }
 
 const Similar: FC<SimilarProps> = ({ mediaType, id }) => {
-  const { data, isLoading } = useAxiosQuery(
-    'recommendations',
-    `/${mediaType}/${id}/similar`
-  )
+  const { data, isLoading } = useTMDB<Similar>('similar', `/${mediaType}/${id}/similar`)
 
   const title = mediaType === 'tv' ? 'Similar TV Shows' : ' Similar Movies'
 

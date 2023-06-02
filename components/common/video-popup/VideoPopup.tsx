@@ -8,8 +8,8 @@ import styles from './VideoPopup.module.scss'
 interface VideoPopupProps {
   show: boolean
   setShow: Dispatch<SetStateAction<boolean>>
-  videoId: null | number
-  setVideoId: Dispatch<SetStateAction<null | number>>
+  videoId: null | number | string
+  setVideoId: Dispatch<SetStateAction<null | number | string>>
 }
 
 const VideoPopup: FC<VideoPopupProps> = ({ setShow, setVideoId, show, videoId }) => {

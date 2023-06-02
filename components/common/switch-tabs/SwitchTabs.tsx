@@ -3,18 +3,20 @@ import { useState } from 'react'
 
 import clsx from 'clsx'
 
+import type { Tab } from '@types'
+
 import styles from './SwitchTabs.module.scss'
 
 interface SwitchTabsProps {
-  data: string[]
-  onTabChange: (tab: string) => void
+  data: [Tab, Tab]
+  onTabChange: (tab: Tab) => void
 }
 
 const SwitchTabs: FC<SwitchTabsProps> = ({ data, onTabChange }) => {
   const [selectedTab, setSelectedTab] = useState<number>(0)
   const [left, setLeft] = useState<number>(0)
 
-  const activeTab = (tab: string, i: number) => {
+  const activeTab = (tab: Tab, i: number) => {
     onTabChange(tab)
     setLeft(i * 100)
     setTimeout(() => {

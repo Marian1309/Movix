@@ -1,13 +1,15 @@
-import type { FC, KeyboardEvent } from 'react'
+import type { FC } from 'react'
 import { useEffect, useState } from 'react'
 
 import { useRouter } from 'next/router'
+
+import { ToastWarn } from '@libs/react-toastify'
 
 import useHomeStore from '@context/homeStore'
 
 import { useTMDB } from '@hooks'
 
-import { ContextWrapper, LazyLoadImage } from '@components/common'
+import { ContentWrapper, LazyLoadImage } from '@components/common'
 
 import styles from './HeroBanner.module.scss'
 
@@ -17,7 +19,6 @@ const HeroBanner: FC = () => {
   const router = useRouter()
 
   const { data, isLoading } = useTMDB('upcoming', '/movie/upcoming')
-
   const { url } = useHomeStore()
 
   useEffect(() => {
@@ -26,11 +27,7 @@ const HeroBanner: FC = () => {
     )
   }, [data])
 
-  const searchQueryHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' && query.length > 0) {
-      router.push(`/search/${query}`)
-    }
-  }
+  const route = () => router.push(`/search/${query}`)
 
   return (
     <div className={styles.heroBanner}>
@@ -45,7 +42,7 @@ const HeroBanner: FC = () => {
 
       <div className={styles['opacity-layer']} />
 
-      <ContextWrapper>
+      <ContentWrapper>
         <div className={styles.heroBannerContent}>
           <span className={styles.title}>Welcome.</span>
           <span className={styles.subTitle}>
@@ -55,15 +52,31 @@ const HeroBanner: FC = () => {
           <div className={styles.searchInput}>
             <input
               onChange={(e) => setQuery(e.target.value)}
-              onKeyUp={searchQueryHandler}
+              onKeyUp={(e) => {
+                if (e.key === 'Enter' && query.length > 0) {
+                  route()
+                } else {
+                  ToastWarn('Type something')
+                }
+              }}
               placeholder='Search for a movie or tv show ...'
               type='text'
             />
 
-            <button>Search</button>
+            <button
+              onClick={() => {
+                if (query.length > 0) {
+                  route()
+                } else {
+                  ToastWarn('Type something')
+                }
+              }}
+            >
+              Search
+            </button>
           </div>
         </div>
-      </ContextWrapper>
+      </ContentWrapper>
     </div>
   )
 }

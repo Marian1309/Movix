@@ -2,26 +2,30 @@ import { useEffect, useState } from 'react'
 
 import type { GetServerSideProps, NextPage } from 'next'
 
+import type { Credits, Details, Video } from '@types'
+
 import fetchFromTMDB from '@utils/helpers/tmdb'
 
 import { Cast, DetailsBanner, Videos } from '@components/screens/details'
 import { Recommendations, Similar } from '@components/screens/details/carousels'
 
 interface DetailsPageProps {
-  videos: any
-  credits: any
-  details: any
+  videos: Video
+  credits: Credits
+  details: Details
   mediaType: 'movie' | 'tv'
-  id: number | string
+  id: string
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-  const videos = await fetchFromTMDB(`/${query?.mediaType}/${query?.id}/videos`)
-  const credits = await fetchFromTMDB(`/${query?.mediaType}/${query?.id}/credits`)
-  const details = await fetchFromTMDB(`/${query?.mediaType}/${query?.id}`)
+export const getServerSideProps: GetServerSideProps = async ({
+  query: { mediaType, id }
+}) => {
+  const videos = await fetchFromTMDB(`/${mediaType}/${id}/videos`)
+  const credits = await fetchFromTMDB(`/${mediaType}/${id}/credits`)
+  const details = await fetchFromTMDB(`/${mediaType}/${id}`)
 
   return {
-    props: { videos, credits, details, mediaType: query?.mediaType, id: query?.id }
+    props: { videos, credits, details, mediaType, id }
   }
 }
 
@@ -42,7 +46,7 @@ const DetailsPage: NextPage<DetailsPageProps> = ({
     <>
       {mounted && (
         <>
-          <DetailsBanner crew={credits?.crew} data={details} video={videos?.results[0]} />
+          <DetailsBanner crew={credits.crew} data={details} video={videos.results[0]} />
           <Cast data={credits.cast} />
           <Videos data={videos} />
           <Similar id={id} mediaType={mediaType} />

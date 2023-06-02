@@ -6,11 +6,18 @@ import { Carousel } from '@components/common'
 
 interface RecommendationProps {
   mediaType: 'movie' | 'tv'
-  id: number | string
+  id: string
+}
+
+type Recommendation = {
+  page: number
+  results: unknown[]
+  total_pages: number
+  total_results: number
 }
 
 const Recommendation: FC<RecommendationProps> = ({ mediaType, id }) => {
-  const { data, isLoading } = useAxiosQuery(
+  const { data, isLoading } = useAxiosQuery<Recommendation>(
     'recommendations',
     `/${mediaType}/${id}/recommendations`
   )

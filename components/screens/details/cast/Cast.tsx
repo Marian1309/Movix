@@ -6,12 +6,25 @@ import useHomeStore from '@context/homeStore'
 
 import { ICONS } from '@utils/constants'
 
-import { ContextWrapper, LazyLoadImage } from '@components/common'
+import { ContentWrapper, LazyLoadImage } from '@components/common'
 
 import styles from './Cast.module.scss'
 
 interface CastProps {
-  data: any
+  data: {
+    adult: boolean
+    cast_id: number
+    character: string
+    credit_id: string
+    gender: number
+    id: number
+    known_for_department: string
+    name: string
+    order: number
+    original_name: string
+    popularity: number
+    profile_path: string
+  }[]
 }
 
 const Cast: FC<CastProps> = ({ data }) => {
@@ -29,12 +42,12 @@ const Cast: FC<CastProps> = ({ data }) => {
 
   return (
     <div className={styles.castSection}>
-      <ContextWrapper>
+      <ContentWrapper>
         <div className={styles.sectionHeading}>Top Cast</div>
 
         {!!data ? (
           <div className={styles.listItems}>
-            {data?.map((item: any) => {
+            {data?.map((item) => {
               const imgUrl = item.profile_path
                 ? url.profile + item.profile_path
                 : ICONS.avatar
@@ -55,7 +68,7 @@ const Cast: FC<CastProps> = ({ data }) => {
             {skeleton()} {skeleton()} {skeleton()} {skeleton()} {skeleton()}
           </div>
         )}
-      </ContextWrapper>
+      </ContentWrapper>
     </div>
   )
 }

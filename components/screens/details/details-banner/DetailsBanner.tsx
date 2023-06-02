@@ -1,9 +1,10 @@
 import type { FC } from 'react'
-import { useEffect } from 'react'
 import { useState } from 'react'
 
 import clsx from 'clsx'
 import dayjs from 'dayjs'
+
+import type { Details } from '@types'
 
 import useHomeStore from '@context/homeStore'
 
@@ -11,7 +12,7 @@ import { ICONS } from '@utils/constants'
 
 import {
   CircleRating,
-  ContextWrapper,
+  ContentWrapper,
   Genres,
   LazyLoadImage,
   VideoPopup
@@ -21,18 +22,40 @@ import { PlayIcon } from '@components/icons'
 import styles from './DetailsBanner.module.scss'
 
 interface DetailsBannerProps {
-  video: any
-  crew: any[]
-  data: any
+  video: {
+    iso_639_1: string
+    iso_3166_1: string
+    key: string
+    name: string
+    official: boolean
+    published_at: Date
+    site: string
+    size: number
+    type: string
+  }
+  crew: {
+    adult: boolean
+    credit_id: number
+    department: string
+    gender: number
+    id: number
+    job: string
+    known_for_department: string
+    name: string
+    original_name: string
+    popularity: number
+    profile_path: string
+  }[]
+  data: Details
 }
 
 const DetailsBanner: FC<DetailsBannerProps> = ({ video, crew, data }) => {
   const [show, setShow] = useState(false)
-  const [videoId, setVideoId] = useState<null | number>(null)
+  const [videoId, setVideoId] = useState<null | string | number>(null)
 
   const { url } = useHomeStore()
 
-  const _genres = data?.genres?.map((g: any) => g.id)
+  const genres = data.genres.map((g) => g.id)
 
   const director = crew?.filter((f) => f.job === 'Director')
   const writer = crew?.filter(
@@ -56,7 +79,7 @@ const DetailsBanner: FC<DetailsBannerProps> = ({ video, crew, data }) => {
 
           <div className={styles['opacity-layer']} />
 
-          <ContextWrapper>
+          <ContentWrapper>
             <div className={styles.content}>
               <div className={styles.left}>
                 {data.poster_path ? (
@@ -69,20 +92,20 @@ const DetailsBanner: FC<DetailsBannerProps> = ({ video, crew, data }) => {
                 )}
 
                 <div className='relative top-0 '>
-                  <CircleRating rating={data.vote_average?.toFixed(1)} />
+                  <CircleRating rating={+data.vote_average.toFixed(1)} />
                 </div>
               </div>
 
               <div className={styles.right}>
                 <div className={styles.title}>
-                  {`${data.name || data.title} (${dayjs(data?.release_date).format(
-                    'YYYY'
-                  )})`}
+                  {`${data.original_title || data.title} (${dayjs(
+                    data?.release_date
+                  ).format('YYYY')})`}
                 </div>
 
                 <div className={styles.subtitle}>{data.tagline}</div>
 
-                <div className={clsx(styles.row)}>
+                <div className={styles.row}>
                   <div
                     className={styles.playbtn}
                     onClick={() => {
@@ -98,7 +121,7 @@ const DetailsBanner: FC<DetailsBannerProps> = ({ video, crew, data }) => {
                 <div className={styles.overview}>
                   <div className='flex items-center justify-between mb-[5px]'>
                     <div className={styles.heading}>Overview</div>
-                    <Genres data={_genres} />
+                    <Genres data={genres} />
                   </div>
                   <div className={styles.description}>{data.overview}</div>
                 </div>
@@ -159,20 +182,6 @@ const DetailsBanner: FC<DetailsBannerProps> = ({ video, crew, data }) => {
                     </span>
                   </div>
                 )}
-
-                {data?.created_by?.length > 0 && (
-                  <div className={styles.info}>
-                    <span className={clsx(styles.text, styles.bold)}>Creator: </span>
-                    <span className={styles.text}>
-                      {data?.created_by?.map((d: any, i: any) => (
-                        <span key={i}>
-                          {d.name}
-                          {data?.created_by.length - 1 !== i && ', '}
-                        </span>
-                      ))}
-                    </span>
-                  </div>
-                )}
               </div>
             </div>
 
@@ -182,11 +191,11 @@ const DetailsBanner: FC<DetailsBannerProps> = ({ video, crew, data }) => {
               show={show}
               videoId={videoId}
             />
-          </ContextWrapper>
+          </ContentWrapper>
         </>
       ) : (
         <div className={styles.detailsBannerSkeleton}>
-          <ContextWrapper className={styles.contentWrapper}>
+          <ContentWrapper className={styles.contentWrapper}>
             <div className={clsx(styles.left, 'skeleton')} />
             <div className={styles.right}>
               <div className={clsx(styles.row, 'skeleton')} />
@@ -197,7 +206,7 @@ const DetailsBanner: FC<DetailsBannerProps> = ({ video, crew, data }) => {
               <div className={clsx(styles.row, 'skeleton')} />
               <div className={clsx(styles.row, 'skeleton')} />
             </div>
-          </ContextWrapper>
+          </ContentWrapper>
         </div>
       )}
     </div>

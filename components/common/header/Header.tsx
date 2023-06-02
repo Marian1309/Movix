@@ -11,18 +11,21 @@ import { HiOutlineSearch } from 'react-icons/hi'
 import { SlMenu } from 'react-icons/sl'
 import { VscChromeClose } from 'react-icons/vsc'
 
+import { ToastWarn } from '@libs/react-toastify'
+
 import { ICONS } from '@utils/constants'
 
-import { ContextWrapper } from '@components/common'
+import { ContentWrapper } from '@components/common'
 
 import styles from './Header.module.scss'
 
 const Header: FC = () => {
-  const [show, setShow] = useState('top')
+  const [show, setShow] = useState<'top' | 'show' | 'hide'>('top')
   const [lastScrollY, setLastScrollY] = useState(0)
   const [mobileMenu, setMobileMenu] = useState(false)
   const [query, setQuery] = useState('')
   const [showSearch, setShowSearch] = useState(false)
+
   const router = useRouter()
 
   useEffect(() => {
@@ -45,13 +48,11 @@ const Header: FC = () => {
     setLastScrollY(window.scrollY)
   }
 
-  const searchQueryHandler = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' && query.length > 0) {
-      router.push(`/search/${query}`)
-      setTimeout(() => {
-        setShowSearch(false)
-      }, 1000)
-    }
+  const route = () => {
+    router.push(`/search/${query}`)
+    setTimeout(() => {
+      setShowSearch(false)
+    }, 1000)
   }
 
   const openSearch = () => {
@@ -77,11 +78,12 @@ const Header: FC = () => {
     <header
       className={clsx(styles.header, mobileMenu && styles.mobileView, styles[show])}
     >
-      <ContextWrapper className='flex justify-between items-center'>
+      <ContentWrapper className='flex justify-between items-center'>
         <Link className={styles.logo} href='/'>
           <Image
             alt='logo'
             height={100}
+            priority
             src={ICONS.logo}
             style={{ width: 'auto', height: 'auto' }}
             width={100}
@@ -89,14 +91,17 @@ const Header: FC = () => {
         </Link>
 
         <div className={styles.menuItems}>
-          <li className={styles.menuItem} onClick={() => navigationHandler('movie')}>
+          <li
+            className={clsx(styles.menuItem)}
+            onClick={() => navigationHandler('movie')}
+          >
             Movies
           </li>
-          <li className={styles.menuItem} onClick={() => navigationHandler('tv')}>
+          <li className={clsx(styles.menuItem)} onClick={() => navigationHandler('tv')}>
             TV Shows
           </li>
           <li className={styles.menuItem}>
-            <HiOutlineSearch onClick={openSearch} />
+            <HiOutlineSearch className={styles.searchIcon} onClick={openSearch} />
           </li>
         </div>
 
@@ -108,22 +113,29 @@ const Header: FC = () => {
             <SlMenu onClick={openMobileMenu} />
           )}
         </div>
-      </ContextWrapper>
+      </ContentWrapper>
 
       {showSearch && (
         <div className={styles.searchBar}>
-          <ContextWrapper>
+          <ContentWrapper>
             <div className={styles.searchInput}>
               <input
                 onChange={(e) => setQuery(e.target.value)}
-                onKeyUp={searchQueryHandler}
+                onKeyUp={(e) => {
+                  if (query.length > 0 && e.key === 'Enter') {
+                    route()
+                  }
+                  if (!query.length && e.key !== 'Enter') {
+                    ToastWarn('Type Something')
+                  }
+                }}
                 placeholder='Search for a movie or TV show ...'
                 type='text'
               />
 
               <VscChromeClose onClick={() => setShowSearch(false)} />
             </div>
-          </ContextWrapper>
+          </ContentWrapper>
         </div>
       )}
     </header>

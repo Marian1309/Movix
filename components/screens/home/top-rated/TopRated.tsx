@@ -3,7 +3,7 @@ import { useState } from 'react'
 
 import { useTMDB } from '@hooks'
 
-import { Carousel, ContextWrapper, SwitchTabs } from '@components/common'
+import { Carousel, ContentWrapper, SwitchTabs } from '@components/common'
 
 import styles from './TopRated.module.scss'
 
@@ -22,11 +22,11 @@ const TopRated: FC = () => {
 
   return (
     <div className={styles.carouselSection}>
-      <ContextWrapper className='flex items-center justify-between'>
+      <ContentWrapper className='flex items-center justify-between'>
         <span className={styles.carouselTitle}>What is on Popular</span>
 
         <SwitchTabs data={['Movies', 'TV Shows']} onTabChange={onTabChange} />
-      </ContextWrapper>
+      </ContentWrapper>
 
       <Carousel data={data?.results} endpoint={endpoint} isLoading={isLoading} />
     </div>

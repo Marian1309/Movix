@@ -3,18 +3,20 @@ import { useState } from 'react'
 
 import clsx from 'clsx'
 
-import { ContextWrapper, LazyLoadImage, VideoPopup } from '@components/common'
+import type { Video } from '@types'
+
+import { ContentWrapper, LazyLoadImage, VideoPopup } from '@components/common'
 import { PlayIcon } from '@components/icons'
 
 import styles from './Videos.module.scss'
 
 interface VideosProps {
-  data: any
+  data: Video
 }
 
 const Videos: FC<VideosProps> = ({ data }) => {
   const [show, setShow] = useState(false)
-  const [videoId, setVideoId] = useState<number | null>(null)
+  const [videoId, setVideoId] = useState<number | null | string>(null)
 
   const loadingSkeleton = () => {
     return (
@@ -28,19 +30,18 @@ const Videos: FC<VideosProps> = ({ data }) => {
 
   return (
     <div className={styles.videosSection}>
-      <ContextWrapper>
+      <ContentWrapper>
         <div className={styles.sectionHeading}>Official Videos</div>
 
         {!!data ? (
           <div className={styles.videos}>
-            {data?.results?.map((video: any) => (
+            {data.results.map((video) => (
               <div
                 className={styles.videoItem}
-                key={video.id}
+                key={video.key}
                 onClick={() => {
                   setShow(true)
-                  setVideoId(video.id)
-                  console.log(video.id)
+                  setVideoId(video.key)
                 }}
               >
                 <div className={styles.videoThumbnail}>
@@ -59,7 +60,7 @@ const Videos: FC<VideosProps> = ({ data }) => {
             {loadingSkeleton()}
           </div>
         )}
-      </ContextWrapper>
+      </ContentWrapper>
 
       <VideoPopup
         setShow={setShow}
