@@ -54,7 +54,10 @@ const MovieCard: FC<MovieCardProps> = ({ data, fromSearch, mediaType }) => {
         {!fromSearch && (
           <>
             <CircleRating rating={+data?.vote_average.toFixed(1)} />
-            <Genres data={data.genre_ids.slice(0, 2)} />
+            <Genres
+              className='flex flex-col items-end'
+              data={data.genre_ids.slice(0, 2)}
+            />
           </>
         )}
       </div>

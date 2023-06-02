@@ -1,4 +1,4 @@
-import type { FC, KeyboardEvent } from 'react'
+import type { FC } from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 
@@ -125,7 +125,7 @@ const Header: FC = () => {
                   if (query.length > 0 && e.key === 'Enter') {
                     route()
                   }
-                  if (!query.length && e.key !== 'Enter') {
+                  if (query.length === 0 && e.key === 'Enter') {
                     ToastWarn('Type Something')
                   }
                 }}
@@ -133,7 +133,7 @@ const Header: FC = () => {
                 type='text'
               />
 
-              <VscChromeClose onClick={() => setShowSearch(false)} />
+              <VscChromeClose color='#04152d' onClick={() => setShowSearch(false)} />
             </div>
           </ContentWrapper>
         </div>

@@ -4,7 +4,7 @@
   @apply w-screen bg-[var(--black)] flex items-center relative xl:h-[700px] md:h-[450px] sm:h-[300px];
 
   .backdrop-img {
-    @apply w-full h-full absolute top-0 left-0 opacity-75 overflow-hidden;
+    @apply w-full h-full absolute top-0 left-0 opacity-75 overflow-hidden text-center;
 
     .lazy-load-image-background {
       @apply w-full h-full;

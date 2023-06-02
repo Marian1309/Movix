@@ -18,7 +18,7 @@ const HeroBanner: FC = () => {
   const [query, setQuery] = useState<string>('')
   const router = useRouter()
 
-  const { data, isLoading } = useTMDB('upcoming', '/movie/upcoming')
+  const { data, isLoading } = useTMDB<{ results: any[] }>('upcoming', '/movie/upcoming')
   const { url } = useHomeStore()
 
   useEffect(() => {
@@ -53,10 +53,11 @@ const HeroBanner: FC = () => {
             <input
               onChange={(e) => setQuery(e.target.value)}
               onKeyUp={(e) => {
-                if (e.key === 'Enter' && query.length > 0) {
+                if (query.length === 0 && e.key === 'Enter') {
+                  ToastWarn('Type Something')
+                }
+                if (query.length > 0 && e.key === 'Enter') {
                   route()
-                } else {
-                  ToastWarn('Type something')
                 }
               }}
               placeholder='Search for a movie or tv show ...'

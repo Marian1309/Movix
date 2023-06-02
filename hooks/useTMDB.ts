@@ -2,7 +2,14 @@ import { useQuery } from '@tanstack/react-query'
 
 import { fetchFromTMDB } from '@utils/helpers'
 
-type Key = 'trending' | 'popular' | 'top-rated' | 'recommendations' | 'similar' | 'genre'
+type Key =
+  | 'trending'
+  | 'popular'
+  | 'top-rated'
+  | 'recommendations'
+  | 'similar'
+  | 'genre'
+  | 'upcoming'
 
 type UseAxiosQuery = <T>(
   key: Key,
