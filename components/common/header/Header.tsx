@@ -106,7 +106,8 @@ const Header: FC = () => {
         </div>
 
         <div className={styles.mobileMenuItems}>
-          <HiOutlineSearch />
+          <HiOutlineSearch className={styles.searchIcon} onClick={openSearch} />
+
           {mobileMenu ? (
             <VscChromeClose onClick={() => setMobileMenu(false)} />
           ) : (

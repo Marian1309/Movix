@@ -1,6 +1,9 @@
 @import '@styles/mixins.scss';
 
 .header {
+  &::selection {
+    display: none;
+  }
   @apply fixed translate-y-0 w-full h-[60px] z-[1] flex items-center;
   transition: all ease 0.5s;
   &.top {

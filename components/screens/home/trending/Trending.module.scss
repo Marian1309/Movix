@@ -1,5 +1,5 @@
 .carouselSection {
-  @apply relative mb-[70px];
+  @apply relative mb-[70px] pt-[35px] md:pt-0;
 
   .carouselTitle {
     @apply text-[24px] text-white font-normal;

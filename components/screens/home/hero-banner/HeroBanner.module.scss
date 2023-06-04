@@ -24,7 +24,7 @@
     @apply flex flex-col items-center text-white text-center relative max-w-[800px] my-0 mx-auto;
 
     .title {
-      @apply text-[50px] font-bold mb-[10px] md:mb-0 md:text-[90px];
+      @apply text-[50px] font-bold mb-[10px] md:mb-0 md:text-[90px] pt-[75px] sm:pt-[50px] md:pt-0;
     }
     .subTitle {
       @apply text-[18px] font-normal mb-[40px] md:text-[24px];

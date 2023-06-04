@@ -1,9 +1,9 @@
 .circleRating {
-  @apply rounded-full p-[2px] left-[0px] bottom-[0px] absolute w-[70px] bg-[var(--black3)];
+  @apply rounded-full p-[2px] left-[0px] bottom-[0px] absolute w-[50px] md:w-[70px] bg-[var(--black3)];
   color: white !important;
 
   .CircularProgressbar-text {
-    @apply text-[40px] font-bold;
+    @apply font-bold;
     fill: var(--black);
   }
 

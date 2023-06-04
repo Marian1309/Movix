@@ -1,9 +1,9 @@
 @import '@styles/mixins.scss';
 
 .genres {
-  @apply flex gap-[5px] absolute right-[10px] p-1;
+  @apply gap-[5px] absolute right-[10px] p-1 md:flex hidden;
 
   .genre {
-    @apply py-[3px] px-[5px] md:text-[10px] lg:text-[14px] rounded-[4px] text-white whitespace-nowrap bg-[var(--pink)];
+    @apply py-[3px] px-[5px] text-[10px] xl:text-[12px] rounded-[4px] text-white whitespace-nowrap bg-[var(--pink)];
   }
 }
