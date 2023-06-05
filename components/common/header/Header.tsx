@@ -1,6 +1,5 @@
 import type { FC } from 'react'
 import { useEffect } from 'react'
-import { useState } from 'react'
 
 import Image from 'next/image'
 import Link from 'next/link'
@@ -13,6 +12,8 @@ import { VscChromeClose } from 'react-icons/vsc'
 
 import { ToastWarn } from '@libs/react-toastify'
 
+import useSearchStore from '@context/headerStore'
+
 import { ICONS } from '@utils/constants'
 
 import { ContentWrapper } from '@components/common'
@@ -20,13 +21,19 @@ import { ContentWrapper } from '@components/common'
 import styles from './Header.module.scss'
 
 const Header: FC = () => {
-  const [show, setShow] = useState<'top' | 'show' | 'hide'>('top')
-  const [lastScrollY, setLastScrollY] = useState(0)
-  const [mobileMenu, setMobileMenu] = useState(false)
-  const [query, setQuery] = useState('')
-  const [showSearch, setShowSearch] = useState(false)
-
   const router = useRouter()
+  const {
+    setShowSearch,
+    showSearch,
+    lastScrollY,
+    setLastScrollY,
+    setMobileMenu,
+    setQuery,
+    setShow,
+    show,
+    query,
+    mobileMenu
+  } = useSearchStore()
 
   useEffect(() => {
     window.addEventListener('scroll', controlNavbar)
@@ -39,6 +46,7 @@ const Header: FC = () => {
     if (window.scrollY > 200) {
       if (window.scrollY > lastScrollY && !mobileMenu) {
         setShow('hide')
+        setShowSearch(false)
       } else {
         setShow('show')
       }
