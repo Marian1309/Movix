@@ -28,6 +28,10 @@ const Videos: FC<VideosProps> = ({ data }) => {
     )
   }
 
+  if (!data.results.length) {
+    return null
+  }
+
   return (
     <div className={styles.videosSection}>
       <ContentWrapper>

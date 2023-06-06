@@ -2,7 +2,7 @@ import type { FC } from 'react'
 
 import clsx from 'clsx'
 
-import useHomeStore from '@context/homeStore'
+import { useHomeStore } from '@hooks/zustand'
 
 import styles from './Genres.module.scss'
 

@@ -12,7 +12,7 @@ import styles from './Popular.module.scss'
 const Popular: FC = () => {
   const [endpoint, setEndpoint] = useState<'movie' | 'tv'>('movie')
 
-  const { data, isLoading, refetch } = useTMDB('popular', `/${endpoint}/popular`)
+  const { data, isLoading, refetch } = useTMDB<any>('popular', `/${endpoint}/popular`)
 
   const onTabChange = (tab: Tab) => {
     console.log(tab)

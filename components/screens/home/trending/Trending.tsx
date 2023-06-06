@@ -12,7 +12,10 @@ import styles from './Trending.module.scss'
 const Trending: FC = () => {
   const [endpoint, setEndpoint] = useState<'day' | 'week'>('day')
 
-  const { data, isLoading, refetch } = useTMDB('trending', `/trending/all/${endpoint}`)
+  const { data, isLoading, refetch } = useTMDB<any>(
+    'trending',
+    `/trending/all/${endpoint}`
+  )
 
   const onTabChange = (tab: Tab) => {
     setEndpoint(tab === 'Day' ? 'day' : 'week')

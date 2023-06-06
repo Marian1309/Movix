@@ -5,9 +5,8 @@ import { useRouter } from 'next/router'
 
 import clsx from 'clsx'
 import dayjs from 'dayjs'
+import { useHomeStore } from 'hooks/zustand'
 import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from 'react-icons/bs'
-
-import useHomeStore from '@context/homeStore'
 
 import { ICONS } from '@utils/constants'
 
@@ -70,7 +69,7 @@ const Carousel: FC<CarouselProps> = ({ data, isLoading, endpoint, title }) => {
 
         {!isLoading ? (
           <div className={styles.carouselItems} ref={carouselContainer}>
-            {data.map((item: any) => {
+            {data?.map((item: any) => {
               const posterUrl = item.poster_path
                 ? `${url.poster}${item.poster_path}`
                 : ICONS['no-poster']

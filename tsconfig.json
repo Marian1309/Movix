@@ -23,9 +23,9 @@
       "@nextAuth": ["./pages/api/auth/[...nextauth].ts"],
 
       "@utils/*": ["./utils/*"],
-      "@libs/*": ["./libs/*"],
-      "@context/*": ["./context/*"],
+      "@providers/*": ["./providers/*"],
       "@hooks": ["./hooks"],
+      "@hooks/zustand": ["./hooks/zustand"],
 
       "@types": ["./@types.ts"],
 

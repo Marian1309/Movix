@@ -15,7 +15,6 @@ const fetchFromTMDB: FetchFromTMDB = async (url, params) => {
     const { data } = await axios.get(`${BASE_URL}${url}`, { headers, params })
     return data
   } catch (err: any) {
-    console.log(err)
     return err
   }
 }

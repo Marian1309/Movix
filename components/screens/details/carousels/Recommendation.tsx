@@ -22,6 +22,10 @@ const Recommendation: FC<RecommendationProps> = ({ mediaType, id }) => {
     `/${mediaType}/${id}/recommendations`
   )
 
+  if (!data?.results?.length) {
+    return null
+  }
+
   return (
     <Carousel
       data={data?.results}

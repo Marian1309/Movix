@@ -10,7 +10,7 @@ import styles from './TopRated.module.scss'
 const TopRated: FC = () => {
   const [endpoint, setEndpoint] = useState<'movie' | 'tv'>('movie')
 
-  const { data, isLoading, refetch } = useTMDB('top-rated', `/${endpoint}/top_rated`)
+  const { data, isLoading, refetch } = useTMDB<any>('top-rated', `/${endpoint}/top_rated`)
 
   const onTabChange = (tab: string) => {
     console.log(tab)

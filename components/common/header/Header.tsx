@@ -6,13 +6,11 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 import clsx from 'clsx'
+import useSearchStore from 'hooks/zustand/headerStore'
+import { toast } from 'react-hot-toast'
 import { HiOutlineSearch } from 'react-icons/hi'
 import { SlMenu } from 'react-icons/sl'
 import { VscChromeClose } from 'react-icons/vsc'
-
-import { ToastWarn } from '@libs/react-toastify'
-
-import useSearchStore from '@context/headerStore'
 
 import { ICONS } from '@utils/constants'
 
@@ -37,6 +35,7 @@ const Header: FC = () => {
 
   useEffect(() => {
     window.addEventListener('scroll', controlNavbar)
+
     return () => {
       window.addEventListener('scroll', controlNavbar)
     }
@@ -99,13 +98,10 @@ const Header: FC = () => {
         </Link>
 
         <div className={styles.menuItems}>
-          <li
-            className={clsx(styles.menuItem)}
-            onClick={() => navigationHandler('movie')}
-          >
+          <li className={styles.menuItem} onClick={() => navigationHandler('movie')}>
             Movies
           </li>
-          <li className={clsx(styles.menuItem)} onClick={() => navigationHandler('tv')}>
+          <li className={styles.menuItem} onClick={() => navigationHandler('tv')}>
             TV Shows
           </li>
           <li className={styles.menuItem}>
@@ -135,7 +131,7 @@ const Header: FC = () => {
                     route()
                   }
                   if (query.length === 0 && e.key === 'Enter') {
-                    ToastWarn('Type Something')
+                    toast.error('Type Something')
                   }
                 }}
                 placeholder='Search for a movie or TV show ...'

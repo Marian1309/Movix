@@ -3,10 +3,9 @@ import { useState } from 'react'
 
 import clsx from 'clsx'
 import dayjs from 'dayjs'
+import { useHomeStore } from 'hooks/zustand'
 
 import type { Details } from '@types'
-
-import useHomeStore from '@context/homeStore'
 
 import { ICONS } from '@utils/constants'
 
@@ -101,9 +100,9 @@ const DetailsBanner: FC<DetailsBannerProps> = ({ video, crew, data }) => {
 
               <div className={styles.right}>
                 <div className={styles.title}>
-                  {`${data.original_title || data.title} (${dayjs(
-                    data?.release_date
-                  ).format('YYYY')})`}
+                  {`${
+                    data.original_title || data.title || 'Name is not avaivable'
+                  } (${dayjs(data?.release_date).format('YYYY')})`}
                 </div>
 
                 <div className={styles.subtitle}>{data.tagline}</div>

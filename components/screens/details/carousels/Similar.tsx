@@ -21,6 +21,10 @@ const Similar: FC<SimilarProps> = ({ mediaType, id }) => {
 
   const title = mediaType === 'tv' ? 'Similar TV Shows' : ' Similar Movies'
 
+  if (!data?.results?.length) {
+    return null
+  }
+
   return (
     <Carousel
       data={data?.results}

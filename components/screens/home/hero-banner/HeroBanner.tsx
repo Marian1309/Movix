@@ -1,11 +1,10 @@
 import type { FC } from 'react'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
 import { useRouter } from 'next/router'
 
-import { ToastWarn } from '@libs/react-toastify'
-
-import useHomeStore from '@context/homeStore'
+import { useHeroBannerStore, useHomeStore } from 'hooks/zustand'
+import { toast } from 'react-hot-toast'
 
 import { useTMDB } from '@hooks'
 
@@ -14,12 +13,11 @@ import { ContentWrapper, LazyLoadImage } from '@components/common'
 import styles from './HeroBanner.module.scss'
 
 const HeroBanner: FC = () => {
-  const [background, setBackground] = useState<string>('')
-  const [query, setQuery] = useState<string>('')
   const router = useRouter()
-
   const { data, isLoading } = useTMDB<{ results: any[] }>('upcoming', '/movie/upcoming')
+
   const { url } = useHomeStore()
+  const { background, setBackground, query, setQuery } = useHeroBannerStore()
 
   useEffect(() => {
     setBackground(
@@ -54,7 +52,7 @@ const HeroBanner: FC = () => {
               onChange={(e) => setQuery(e.target.value)}
               onKeyUp={(e) => {
                 if (query.length === 0 && e.key === 'Enter') {
-                  ToastWarn('Type Something')
+                  toast.error('Type Something')
                 }
                 if (query.length > 0 && e.key === 'Enter') {
                   route()
@@ -69,7 +67,7 @@ const HeroBanner: FC = () => {
                 if (query.length > 0) {
                   route()
                 } else {
-                  ToastWarn('Type something')
+                  toast.error('Type something')
                 }
               }}
             >

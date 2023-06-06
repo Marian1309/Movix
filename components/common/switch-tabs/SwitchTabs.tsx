@@ -1,9 +1,10 @@
 import type { FC } from 'react'
-import { useState } from 'react'
 
 import clsx from 'clsx'
 
 import type { Tab } from '@types'
+
+import { useSwitchTabsStore } from '@hooks/zustand'
 
 import styles from './SwitchTabs.module.scss'
 
@@ -13,8 +14,7 @@ interface SwitchTabsProps {
 }
 
 const SwitchTabs: FC<SwitchTabsProps> = ({ data, onTabChange }) => {
-  const [selectedTab, setSelectedTab] = useState<number>(0)
-  const [left, setLeft] = useState<number>(0)
+  const { left, setLeft, selectedTab, setSelectedTab } = useSwitchTabsStore()
 
   const activeTab = (tab: Tab, i: number) => {
     onTabChange(tab)

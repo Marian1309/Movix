@@ -4,9 +4,9 @@ import { useRouter } from 'next/router'
 
 import dayjs from 'dayjs'
 
-import useHomeStore from '@context/homeStore'
-
 import { ICONS } from '@utils/constants'
+
+import { useHomeStore } from '@hooks/zustand'
 
 import { CircleRating, Genres, LazyLoadImage } from '@components/common'
 
