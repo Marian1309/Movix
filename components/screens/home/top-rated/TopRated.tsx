@@ -23,7 +23,7 @@ const TopRated: FC = () => {
   return (
     <div className={styles.carouselSection}>
       <ContentWrapper className='flex items-center justify-between'>
-        <span className={styles.carouselTitle}>What is on Popular</span>
+        <span className={styles.carouselTitle}>Top Rated</span>
 
         <SwitchTabs data={['Movies', 'TV Shows']} onTabChange={onTabChange} />
       </ContentWrapper>
