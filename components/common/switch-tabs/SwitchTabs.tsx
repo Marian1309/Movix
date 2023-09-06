@@ -4,17 +4,21 @@ import clsx from 'clsx'
 
 import type { Tab } from '@types'
 
-import { useSwitchTabsStore } from '@hooks/zustand'
-
 import styles from './SwitchTabs.module.scss'
 
 interface SwitchTabsProps {
   data: [Tab, Tab]
   onTabChange: (tab: Tab) => void
+  store: {
+    left: number
+    setLeft: (left: number) => void
+    selectedTab: number
+    setSelectedTab: (tab: number) => void
+  }
 }
 
-const SwitchTabs: FC<SwitchTabsProps> = ({ data, onTabChange }) => {
-  const { left, setLeft, selectedTab, setSelectedTab } = useSwitchTabsStore()
+const SwitchTabs: FC<SwitchTabsProps> = ({ data, onTabChange, store }) => {
+  const { left, setLeft, selectedTab, setSelectedTab } = store
 
   const activeTab = (tab: Tab, i: number) => {
     onTabChange(tab)

@@ -95,7 +95,7 @@ type SwitchTabs = {
   setLeft: (left: number) => void
 }
 
-const useSwitchTabsStore = create<SwitchTabs>((set) => {
+const useSwitchTabsPopularStore = create<SwitchTabs>((set) => {
   return {
     selectedTab: 0,
     setSelectedTab: (selectedTab) => set({ selectedTab }),
@@ -104,4 +104,27 @@ const useSwitchTabsStore = create<SwitchTabs>((set) => {
   }
 })
 
-export { useHomeStore, useHeroBannerStore, useSwitchTabsStore }
+const useSwitchTabsTopRatedStore = create<SwitchTabs>((set) => {
+  return {
+    selectedTab: 0,
+    setSelectedTab: (selectedTab) => set({ selectedTab }),
+    left: 0,
+    setLeft: (left) => set({ left })
+  }
+})
+
+const useSwitchTabsTrendingStore = create<SwitchTabs>((set) => {
+  return {
+    selectedTab: 0,
+    setSelectedTab: (selectedTab) => set({ selectedTab }),
+    left: 0,
+    setLeft: (left) => set({ left })
+  }
+})
+export {
+  useHomeStore,
+  useHeroBannerStore,
+  useSwitchTabsPopularStore,
+  useSwitchTabsTopRatedStore,
+  useSwitchTabsTrendingStore
+}

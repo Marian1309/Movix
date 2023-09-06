@@ -1,4 +1,4 @@
-export type Tab = 'Day' | 'Movies' | 'Week' | 'TV Shows'
+export type Tab = 'Day' | 'Week' | 'TV Shows' | 'Movies'
 
 export type Video = {
   id: number

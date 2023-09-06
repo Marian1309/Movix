@@ -4,6 +4,7 @@ import { useState } from 'react'
 import type { Tab } from '@types'
 
 import { useTMDB } from '@hooks'
+import { useSwitchTabsTrendingStore } from '@hooks/zustand'
 
 import { Carousel, ContentWrapper, SwitchTabs } from '@components/common'
 
@@ -11,7 +12,7 @@ import styles from './Trending.module.scss'
 
 const Trending: FC = () => {
   const [endpoint, setEndpoint] = useState<'day' | 'week'>('day')
-
+  const store = useSwitchTabsTrendingStore()
   const { data, isLoading, refetch } = useTMDB<any>(
     'trending',
     `/trending/all/${endpoint}`
@@ -29,7 +30,7 @@ const Trending: FC = () => {
       <ContentWrapper className='flex items-center justify-between'>
         <span className={styles.carouselTitle}>Trending</span>
 
-        <SwitchTabs data={['Day', 'Week']} onTabChange={onTabChange} />
+        <SwitchTabs data={['Day', 'Week']} onTabChange={onTabChange} store={store} />
       </ContentWrapper>
 
       <Carousel data={data?.results} endpoint={endpoint} isLoading={isLoading} />
