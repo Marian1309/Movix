@@ -11,6 +11,8 @@ import { MovieCard } from '@components/screens/search'
 
 import styles from './index.module.scss'
 
+export const runtime = 'edge';
+
 interface SearchPageProps {
   query: Object
 }
