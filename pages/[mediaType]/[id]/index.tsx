@@ -9,6 +9,8 @@ import fetchFromTMDB from '@utils/helpers/tmdb'
 import { Cast, DetailsBanner, Videos } from '@components/screens/details'
 import { Recommendations, Similar } from '@components/screens/details/carousels'
 
+export const runtime = 'edge';
+
 interface DetailsPageProps {
   videos: Video
   credits: Credits
